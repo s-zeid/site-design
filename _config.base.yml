@@ -1,7 +1,6 @@
 layouts:             ./_template/_layouts
 plugins:             ./_template/_plugins
 
-url:          
 permalink:           /blog/:year/:month/:day/:title/
 relative_permalinks: True
 pygments:            True
