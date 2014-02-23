@@ -24,6 +24,9 @@ Setup
         any-distro$ sudo npm install stylus
         any-distro$ sudo gem install jekyll stylus
     
+    PHP 5 is an optional dependency, necessary only for the provided
+    redirect mechanism (`_static/redirect.php`).
+    
 2.  Download <https://bitbucket.org/scottywz/site-design/raw/master/new-site>
     and make it executable.
 3.  Inspect `new-site`.

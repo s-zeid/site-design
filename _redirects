@@ -1,0 +1,12 @@
+# This file specifies relative URLs to be redirected as per
+# <http://www.w3.org/Provider/Style/URI.html>.
+# 
+# Entries are of the format `<old-url> => <new-url>`.  Lines
+# starting with a `#` are ignored as comments.  Lines may be
+# broken before and/or after the arrow.  You may also use an
+# equals sign instead of a hyphen.
+#
+# This file is read by `_static/redirect.php`.  To use it, tell
+# your server to use that PHP script as the 404 handler.  The
+# `redirect.php` script will send 404.html, if available, if no
+# redirect is available for the requested URL.

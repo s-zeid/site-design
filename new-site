@@ -41,6 +41,10 @@ if [ ! -e "$dir"/_postbuild ]; then
  chmod +x "$dir"/_postbuild
 fi
 
+if [ ! -e "$dir"/_redirects ]; then
+ cp -a "$dir"/_template/_redirects "$dir"/_redirects
+fi
+
 mkdir -p "$dir"/_comments
 mkdir -p "$dir"/_drafts
 mkdir -p "$dir"/_posts
