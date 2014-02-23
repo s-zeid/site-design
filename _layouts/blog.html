@@ -1,0 +1,45 @@
+---
+layout: base
+---
+
+<article>
+{% indent 1 %}{{ content }}{% endindent %}</article>
+{% strip %}<aside>
+ <nav>
+  <h2>Recent Posts</h2>
+  <ul>
+  {% for p in site.posts limit:3 %}
+   <li>
+    <a href="{{ site.url }}{{ p.url }}">{{ p.title }}</a>
+    <time datetime="{{ p.date | date: "%Y-%m-%dT%H:%M:%S" }}">
+     {{ p.date | date: "%A, %B %d, %Y %H:%M" }}
+    </time>
+   </li>
+  {% endfor %}
+  </ul>
+ </nav>
+ <nav>
+  <h2>Categories</h2>
+  <ul>
+  {% for c in site.categories %}
+   <li>
+    <a href="{{ site.url }}/blog/categories/{{ c[0] | uri_escape }}">
+     {{ c[0] }} ({{ c[1]|size}})
+    </a>
+   </li>
+  {% endfor %}
+  </ul>
+ </nav>
+ <nav>
+  <h2>Tags</h2>
+  <ul>
+  {% for t in site.tags %}
+   <li>
+    <a href="{{ site.url }}/blog/tags/{{ t[0] | uri_escape }}">
+     {{ t[0] }} ({{ t[1] | size }})
+    </a>
+   </li>
+  {% endfor %}
+  </ul>
+ </nav>
+</aside>{% endstrip %}

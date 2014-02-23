@@ -1,0 +1,8 @@
+name:                John Smith
+
+author:
+ name:               John Smith
+ url:                http://john.smith.example/
+
+full-url:            http://john-smith.example
+ganalytics:          UA-XXXXXX-Y    # Optional

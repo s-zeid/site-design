@@ -1,0 +1,47 @@
+/* This stylesheet is automatically generated using Stylus.  See the
+   original source at <http://s.zeid.me/source/_styles/basic.styl>. */
+
+/* base.css - rules specific to basic.css are at the bottom */
+
+@import "base"
+
+/* basic.css rules */
+
+body
+ max-width: 720px;
+ margin: 1em auto;
+ padding: 0 1em;
+ line-height: 1.5em;
+
+ul, ol
+ line-height: 1.25em;
+
+body > header
+ @extend h1;
+
+.plain-header body > header, body.plain-header > header, body > header.plain
+ font-size: inherit;
+ margin: 0;
+ line-height: inherit;
+ font-weight: inherit;
+ text-transform: inherit;
+ letter-spacing: inherit;
+
+main
+ margin: 1em 0;
+
+body > footer
+ color: $outer-text;
+
+.liquid-render-error
+ display: block;
+
+@media print
+ body
+  margin: 0;
+  padding: 0;
+ main
+  &:first-child
+   margin-top: 0;
+  &:last-child
+   margin-bottom: 0;

@@ -1,0 +1,166 @@
+/* Responsive design, fuck yeah!  :D */
+
+@import "config"
+@import "helpers"
+
+@media (orientation: portrait) and (min-resolution: 160dpi)
+ body, main
+  max-width: 100%;
+
+@media (min-resolution: 160dpi),
+       handheld, (max-width: 480px), (max-device-width: 480px)
+ body
+  width: $width-tablet + $width-header-plus;
+  &, pre, code, kbd, samp, var, tt, input, select, textarea
+   font-size: 16pt;
+  & > header nav ul li > a img, & > header > h1 img
+   for type in min max
+    for dim in width height
+     {type}-{dim}: 22px;
+ main
+  width: $width-tablet;
+  > article
+   font-size: 14pt;
+ footer
+  padding-bottom: .0875em;
+  #portal-minibar
+   position: relative; top: 0.25em;
+
+@media (min-resolution: 240dpi)
+ main > article
+  font-size: 14pt;
+
+@media handheld, tv, (max-width: 639px), (max-device-width: 639px)
+ body > header
+  &, html.home &, html.level-0 &, html.no-h1 &,
+     html.always-show-h1.home &, html.always-show-h1.level-0 &
+   position: relative; top: auto;
+   height: auto;
+   
+   nav
+    position: static;
+    &, & > ul
+     height: auto;
+   & > h1
+    top: auto;
+ 
+ main
+  display: block;
+  background-image: none;
+  > :first-child:before
+   // undo the min-height hack used in the desktop <main> style (see screen.styl)
+   height: 0;
+  &, html.home &, html.level-0 &, html.no-h1 &,
+     html.always-show-h1.home &, html.always-show-h1.level-0 &
+   padding-top: 0.3em; 
+   anchor-offset-top: 0;
+  > article, > aside
+   border-top-style: none;
+   border-bottom-style: none;
+   background: transparent;
+  > article
+   display: block;
+   max-width: 100%;
+  > aside
+   width: 100%;
+   padding: 0.8em 0;
+   border-style: none;
+   text-align: center;
+   background: $background-darker;
+   box-shadow: 0 -6px 6px 0 rgba(0, 0, 0, .2);
+   &, &:first-child
+    display: block;
+   &.contents-only
+    display: none;
+   &:first-child
+    margin: -0.375em 0 0.375em 0;
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, .2);
+   > h2, > nav > h2, > section > h2
+    margin-left: 0.5em;
+    &:first-child
+     margin-top: 0;
+   > nav, > section
+    &.screen-only, &.no-mobile
+     &:first-child
+      + nav, + section
+       margin-top: 0;
+   > h2, > nav, > section
+    padding: 0 0.8em;
+ 
+ .screen-only, .no-mobile
+  display: none;
+ 
+ //@media handheld, (max-width: 480px), (max-device-width: 480px)
+ body > header
+  overflow: hidden;
+  nav
+   & > ul
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    & > li
+     float: none;
+     width: auto;
+     display: none;
+     &.home:first-child
+      display: block;
+      width: 100%; height: 2em;
+      text-align: center;
+      > a, > a span
+       display: inline-block;
+     &.has-children
+      > a span + span
+       padding-right: 0.5em;
+       &:before
+        display: none;
+     ul
+      display: none;
+    &:before
+     content: "»";
+     position: absolute; top: 0; right: 0; left: auto;
+     display: inline-block;
+     float: right;
+     padding: 0.5em 0.75em;
+     color: rgba($header-highlight-text, 0.75);
+     font-weight: normal;
+     line-height: 1em;
+     text-shadow: 1px -1px $header-text-shadow;
+     transform: translateX(0.25em) rotate(90deg);
+     transition: all 0.4s ease-out;
+    &:hover
+     & > li
+      &.home:first-child
+       display: inline-block;
+       height: auto;
+       > a
+        display: inline-block;
+        &:not(:hover):not(:focus)
+         background: $header-background;
+         color: $header-text;
+         text-shadow: 1px 1px $header-text-shadow;
+      &, a, a span
+       display: inline-block;
+     &:before
+      background: $header-highlight-darker;
+   &:hover:after
+    content: "Close";
+    display: block;
+    padding: 0.5em 0;
+    text-align: center;
+    color: rgba($header-highlight-text, 0.75);
+  h1
+   &, html.home &, html.level-0 &, html.no-h1 &,
+      html.always-show-h1.home &, html.always-show-h1.level-0 &
+    height: auto;
+    min-height: 2em;
+    text-align: center;
+   html.home &, html.no-h1 &
+    min-height: 0.3em;
+   img
+    display: inline;
+    float: none;
+    margin: 0;
+    vertical-align: -0.16em;
+ body > footer
+  text-align: center;
+  line-height: 1.25em;

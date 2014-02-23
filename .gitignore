@@ -1,0 +1,3 @@
+.*.swp
+_static/styles/*
+!_static/styles/.gitinclude

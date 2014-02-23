@@ -1,0 +1,14 @@
+layouts:             ./_template/_layouts
+plugins:             ./_template/_plugins
+
+url:          
+permalink:           /blog/:year/:month/:day/:title/
+relative_permalinks: True
+pygments:            True
+category-dir:        /blog/categories
+tag-dir:             /blog/tags
+
+exclude:             [COPYING,COPYING.md,LICENSE,LICENSE.md,Makefile,README,README.md]
+
+stylus:
+ path:               ./_template/_styles

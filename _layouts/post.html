@@ -1,0 +1,42 @@
+---
+layout: blog
+---
+
+{% strip %}<header>
+ <section class="date">
+  Posted on
+  <time datetime="{{ page.date | date: "%Y-%m-%dT%H:%M:%S" }}">
+   {{ page.date | date: "%A, %B %d, %Y at %H:%M" }}
+  </time>
+ </section>
+{% capture n_categories %}{{ page.categories | size }}{% endcapture %}
+{% if n_categories != "0" %}
+ <section class="categories">
+  Categories:&nbsp;
+{% comment %}
+ There is a space immediately after the for tag starts.  This is important for
+ the regex, as we're trying to match only the *last* comma in the entire list.
+{% endcomment %}
+{% capture category_list %}{% for category in page.categories %} 
+  <a href="{{ site.url }}/blog/categories/{{ category | uri_escape }}">{{category}}</a>,
+{% endfor %}{% endcapture %}
+{{ category_list | gsub:',\n$','' }}
+ </section>
+{% endif %}
+{% capture n_tags %}{{ page.tags | size }}{% endcapture %}
+{% if n_tags != "0" %}
+ <section class="tags">
+  Tags:&nbsp;
+{% comment %}
+ There is a space immediately after the for tag starts.  This is important for
+ the regex, as we're trying to match only the *last* comma in the entire list.
+{% endcomment %}
+{% capture tag_list %}{% for tag in page.tags %} 
+  <a href="{{ site.url }}/blog/tags/{{ tag | uri_escape }}">{{tag}}</a>,
+{% endfor %}{% endcapture %}
+{{ tag_list | gsub:',\n$','' }}
+ </section>
+{% endif %}
+</header>{% endstrip %}
+
+{{ content }}

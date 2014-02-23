@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+{% strip %}
+{% if page.title == "Home" %}{% assign home = true %}{% endif %}
+<html class="level-{% sitenavlevel %}{% if home %} home{% endif %}{% if page.h1 %} always-show-h1{% endif %}{%if page.h1 == false %} no-h1{%endif%}">
+ <head>
+  <meta charset="utf-8" />
+  {% if page.html-title and home == null %}
+  <title>{{ page.html-title|strip_html }} &middot; {{ site.name | strip_html }}</title>
+  {% elsif page.title and home == null %}
+  <title>{{ page.title | strip_html }} &middot; {{ site.name | strip_html }}</title>
+  {% else %}
+  <title>{{ site.name | strip_html }}</title>
+  {% endif %}
+  <meta name="author" content="{{ site.author.name }}" />
+  {% if home != null and site.description != null %}
+  <meta name="description" content="{{ site.description | markdownify | strip_html | xml_escape }}" />
+  {% elsif page.description != null %}
+  <meta name="description" content="{{ page.description | markdownify | strip_html | xml_escape }}" />
+  {% endif %}
+  <meta name="generator" content="Jekyll" />
+  <meta name="viewport" content="width=device-width; minimum-scale=1.0; initial-scale=1.0" />
+  {% if page.icon %}
+  <link rel="shortcut icon" type="image/png" href="{{ page.icon }}" />
+  {% else %}
+  <link rel="shortcut icon" type="image/x-icon" href="{{ site.url }}/favicon.ico" />
+  {% endif %}
+  {% if page.title == "Home" or page.url contains "/blog/" %}
+  <link rel="alternate" type="application/atom+xml" href="{{ site.url }}/blog/feed" title="ATOM feed" />
+  {% endif %}
+  <link rel="stylesheet" type="text/css" href="{{ site.url }}/styles/base.css" />
+  <!--[if (!IE)|(gte IE 8)]><!-->
+   <link rel="stylesheet" type="text/css" href="{{ site.url }}/styles/screen.css" media="screen" title="Screen" />
+   <link rel="stylesheet alternate" type="text/css" href="{{ site.url }}/styles/print.css" media="screen" title="Print" />
+  <!--<![endif]-->
+  <link rel="stylesheet" type="text/css" href="{{ site.url }}/styles/print.css" media="print, embossed" />
+  <link rel="stylesheet" type="text/css" href="{{ site.url }}/lightbox/css/lightbox.css" />{% endstrip %}{% if page.stylus or page.css %}
+  <style type="text/css"> /* Page-specific styles */
+{% indent 3 %}{% if page.stylus %}/* Compiled Stylus code */
+{% stylus %}{{ page.stylus }}{% endstylus %}{% endif %}{% if page.css %}/* Plain CSS */
+{{ page.css }}{% endif %}{% endindent %}  </style>{% endif %}{% strip %}
+  <script type="text/javascript" src="{{ site.url }}/html5shiv.js"></script>
+  <script type="text/javascript" src="{{ site.url }}/html5shiv-printshiv.js"></script>
+  <script type="text/javascript" src="{{ site.url }}/jquery.min.js"></script>
+  <script type="text/javascript" src="{{ site.url }}/mobile.js"></script>
+  <script type="text/javascript" src="{{ site.url }}/lightbox/lightbox.min.js"></script>
+{% endstrip %}{% if page.head %}{% indent 2 %}{{ page.head }}{% endindent %}{% endif %}{% strip %}{% if site.ganalytics %}  <script type="text/javascript">
+   var _gaq = _gaq || [];
+   _gaq.push(['_setAccount', '{{ site.ganalytics }}']);
+   _gaq.push(['_trackPageview']);
+   (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+   })();
+  </script>{% endif %}
+ </head>
+ <body>
+  <header>
+   {% capture header_nav %}
+   <nav>
+    {% sitenav %}{% raw %}
+    <ul>
+    {% for p in nav.pages %}
+     {% capture li %}
+     <li class="{%if p.nav.current%} current{%elsif p.nav.parent%} parent{%endif%}{%if p.title == "Home"%} home{%endif%}{%if p.nav.has_children%} has-children{%endif%}">
+     {% endcapture %}
+     {{ li | replace: 'class=" ', 'class="' | replace: ' class=""', "" }}
+      <a href="{%if p.nav.url%}{{p.nav.url|uri_escape}}{%else%}{{site.url}}{{p.nav.slug|uri_escape}}{%endif%}"{%if p.nav.target%} target="{{p.nav.target}}"{%endif%}>
+       <span>{% if p.icon %}<img src="{{ site.url }}{% if p.nav.dir != "/" %}{{ p.nav.dir }}{% endif %}/{{ p.icon }}" alt="" class="left" />{% endif %}</span>
+      {% if p.menu-text %}
+       <span>{{p.menu-text}}</span>
+      {% elsif p.title != "Home" %}
+       <span>{{p.nav.title}}</span>
+      {% else %}
+       <span>{{site.name}}</span>
+      {% endif %}
+      </a>
+     {% capture level %}{{ nav.level | plus: 2 | minus: nav.level }}{% endcapture %}
+     {% indent level %}{{p.nav.children}}{% endindent %}
+     </li>
+    {% endfor %}
+    </ul>
+    {% endraw %}{% endsitenav %}
+   </nav>
+   {% endcapture %}
+   {{ header_nav | strip_newlines | replace: "  ", "" | replace: " <", "<" }}
+   <h1 class="plain">{% unless home or page.h1 == false %}
+   {% if page.icon %} <img src="{{ page.icon }}" alt="" />{% endif %}
+   {% if page.h1 and page.h1 != true %}
+    {{ page.h1 }}
+   {% elsif page.title == null or page.title == "" %}
+    {% slug %}
+   {% else %}
+    {{ page.title }}
+   {% endif %}
+   {% endunless %}</h1>
+  </header>
+  <main>
+{% endstrip %}{% indent 3 %}{{ content }}{% endindent %}{% strip %}  </main>
+  <footer>
+   <!--[if (!IE)|(gte IE 9)]><!-->
+    <span id="portal-minibar" class="screen-only"
+          style="float: right; height: 23px; margin-top: -.3em; padding-bottom: .3em;">
+      <iframe src="//s.zeid.me/more/?minibar&amp;horizontal&amp;highlight=s.zeid.me&amp;theme=new"
+              style="width: 300px; height: 23px; border-style: none; overflow:hidden;">
+      </iframe>
+    </span>
+   <!--<![endif]-->
+   <aside>
+    <a href="https://youtu.be/DRm5WcjOikQ#t=1m46s" class="darker"
+       title="You've got a nice Web site here.  We wouldn't want anything to *happen* to it....">&copy;</a>
+    2007&ndash;{{ "00:00:00" | date: "%Y" }} Scott Zeid.<span class="no-print">&nbsp;
+    <a href="{{site.url}}/source/LICENSE">License</a></span>
+   </aside>
+   <!--aside> (commented out until the CSS validator adds transform: support)
+    <a href="http://validator.w3.org/check?uri=referer">Valid HTML 5</a> and
+    <a href="http://jigsaw.w3.org/css-validator/check/referer?vextwarning=true">
+     CSS 3</a>.&nbsp;
+   </aside-->
+  </footer>
+  <!--[if !(lt IE 8)]><!--> 
+   <script type="text/javascript"> 
+    var tdwfb_config={
+     greeting:    "Dear Internet Users",
+     disableDate: document.location.hash == "#tdwfb",
+     callOnly:    true
+    };
+    
+    (function(){
+     var e = document.createElement('script'); e.type='text/javascript'; e.async = true;
+     e.src = 'https://d1agz031tafz8n.cloudfront.net/thedaywefightback.js/widget.min.js';
+     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(e, s);
+    })();
+   </script>
+  <!--<![endif]-->
+ </body>
+</html>{% endstrip %}{% comment %} vim: set ft=liquid: {% endcomment %}

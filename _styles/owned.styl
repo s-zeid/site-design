@@ -1,0 +1,53 @@
+/* You've Been Owned campaign */
+
+/* Installation instructions:
+ 
+ * Import in both screen.styl and mobile.styl, after config and helpers.
+ 
+ * Add this to the top of <body>:
+   
+    <section id="owned-ribbon" class="screen-only">
+     <a href="http://www.youvebeenowned.org/">
+      <img src="{{site.url}}/owned-ribbon-right.png" alt="You've been owned!" />
+     </a>
+    </section>
+ 
+ * Add this to the top of <header>:
+   
+    <section id="owned" class="screen-only">
+     <a href="http://www.youvebeenowned.org/">
+      <img src="{{site.url}}/owned-custom.png" alt="You've been owned!" />
+     </a>
+    </section>
+
+*/
+
+$width-tablet = 44em
+
+body
+ > #owned-ribbon
+  position: fixed; top: 0; right: 0;
+  width: auto;
+  z-index: 999;
+ > header #owned
+  position: absolute;
+  top: -29px;
+  left: -264px;
+  width: auto;
+  z-index: 999;
+  opacity: 0.42;
+  clip: rect(42px, 308px, 279px, 95px);
+  transition: opacity 0.4s ease-out;
+  &:hover
+   opacity: 0.8;
+
+@media (min-width: 1266px), (min-resolution: 160dpi) and (min-width: 1266px) and (orientation: landscape)
+ #owned-ribbon
+  display: none;
+@media (max-width: 1265px), (min-resolution: 160dpi) and (max-width: 1265px) and (orientation: portrait)
+ #owned
+  display: none;
+@media (min-resolution: 160dpi)
+ body > header #owned
+  top: -21px;
+  left: -256px;

@@ -1,0 +1,44 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+ echo "Usage: $0 directory [template-repository]" >&2
+ exit 2
+fi
+
+dir=$(readlink -m "$1")
+repo=https://bitbucket.org/scottywz/site-design.git
+
+if [ -n "$2" ]; then
+ repo=$2
+fi
+
+if [ ! -e "$dir" ]; then
+ mkdir -p "$dir"
+fi
+
+if [ ! -d "$dir" ]; then
+ echo "error: $dir exists but is not a directory" >&2
+ exit 1
+fi
+
+git clone https://bitbucket.org/scottywz/site-design.git "$dir"/_template
+
+if [ ! -e "$dir"/Makefile ]; then
+ ln -s "$dir"/_template/Makefile "$dir"/Makefile
+fi
+
+if [ ! -e "$dir"/_config.yml ]; then
+ cp -a "$dir"/_template/_config.dist.yml "$dir"/_config.yml
+fi
+
+if [ ! -e "$dir"/_postgen ]; then
+ cp -a "$dir"/_template/_postgen "$dir"/_postgen
+ chmod +x "$dir"/_postgen
+fi
+
+mkdir -p "$dir"/_comments
+mkdir -p "$dir"/_drafts
+mkdir -p "$dir"/_posts
+mkdir -p "$dir"/_postfiles
+mkdir -p "$dir"/_static
+

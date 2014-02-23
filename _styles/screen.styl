@@ -1,0 +1,270 @@
+@import "config"
+@import "helpers"
+
+/* This stylesheet is automatically generated using Stylus.  See the
+   original source at <http://s.zeid.me/source/_styles/screen.styl>. */
+
+body
+ width: $width + $width-header-plus; max-width: 100%;
+ margin: 0 auto;
+ background: $outer-background;
+ color: $outer-text;
+
+pre
+ overflow-x: auto;
+
+body > header
+ position: fixed; top: 0; right: auto; bottom: auto; left: auto;
+ width: inherit; max-width: inherit;
+ z-index: 1;
+ line-height: 2em;
+ font-weight: bold;
+ background: $header-background;
+ color: $header-text;
+ text-shadow: 1px 1px $header-text-shadow;
+ box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+ 
+ html.home &, html.level-0 &
+  height: 2.3em;
+ &, html.always-show-h1.home &, html.always-show-h1.level-0 &
+  height: 4em;
+ 
+ for pseudo-element in selection -moz-selection
+  ::{pseudo-element}
+   background: $background;
+   color: $links;
+   text-shadow: none !important;
+ 
+ nav
+  position: absolute; width: 100%;
+  clip: rect(auto, auto, 35791394px, auto);
+  box-shadow: 0 -9px 6px -6px rgba(0, 0, 0, 0.8) inset;
+  &, & > ul
+   height: 2em;
+   font-weight: normal;
+  ul
+   display: table;
+   margin: 0;
+   padding-left: 0;
+   li
+    display: table-row-group;
+    list-style: none;
+    float: left;
+    & > a
+     display: table-row;
+     min-height: 2em;
+     white-space: nowrap;
+     outline: none;
+     background: $header-dropdown-background;
+     color: $header-dropdown-text;
+     text-shadow: 1px 1px $header-dropdown-text-shadow;
+     transition: all 0.4s ease-out;
+     &:hover, &:focus
+      text-decoration: none;
+     img
+      margin: 0.5em 0.5em 0 0;
+      float: left;
+      width: auto; height: auto;
+      for type in min max
+       for dim in width height
+        {type}-{dim}: 16px;
+     & > span
+      display: table-cell;
+      vertical-align: top;
+      padding: 0 0 0 0.5em;
+     & > span + span
+      display: block;
+      padding: 0 0.5em 0 0;
+    html:not(.no-text-bug) &:not(.current):not(.home) > a span + span
+     /* WebKit (other than Chrome on Android) and Opera seem to want to put
+      * the text for non-bold navigation items one pixel lower than those
+      * that are bold--when using the Ubuntu font.  This fixes that. */
+     -webkit-transform: translateY(-1px);
+     -o-transform: translateY(-1px);
+    &:hover > a, & > a:focus, &.current > a, &.parent > a
+     position: relative;
+     z-index: 3;
+     background: $header-highlight;
+     color: $header-highlight-text;
+     text-shadow: 1px 1px $header-highlight-text-shadow;
+    & > a:hover, & > a:focus
+     background: $header-highlight-darker;
+    &.current > a, &.home > a
+     font-weight: bold;
+    &.has-children > a span + span
+     padding-right: 1.5em;
+     &:before
+      content: "»";
+      position: relative; top: -1px; left: 1em;
+      display: inline-block;
+      float: right;
+      opacity: 0.75;
+      font-weight: normal;
+    & ul
+     position: absolute; top: -9999%; left: -9999%;
+     opacity: 0;
+     transition: opacity 0.4s ease-out;
+    &:hover > ul
+     top: auto; left: auto;
+     z-index: -1;
+     opacity: 1;
+     box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+     & li
+      float: none;
+      &:hover > ul
+       margin: -2em 0 0 100%;
+  & > ul
+   &:after
+    /* Fix ClearType text bug on Firefox/Windows */
+    content: "\A0";
+    position: absolute; right: 0;
+    display: block;
+    width: 0; height: 0;
+    font-size: 0;
+    color: #000;
+   & > li
+    &, & > a
+     position: relative;
+     z-index: 0;
+    & > a
+     background: transparent;
+     color: $header-text;
+     text-shadow: 1px 1px $header-text-shadow;
+     img
+      margin-right: 0.25em;
+    &:hover, &.home:first-child > a:hover
+     box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+    &.home:first-child
+     box-shadow: none;
+    &.has-children
+     &, & > a
+      z-index: 3;
+     & > a span + span
+      padding-right: 1em;
+      &:before
+       left: 0.5em;
+       line-height: 1em;
+       margin-top: 0.5em;
+       text-shadow: 1px -1px $text;
+       transform: translateX(1px) translateY(2px) rotate(90deg);
+ 
+ & > h1
+  position: relative;
+  top: 2em;
+  display: block;
+  clear: both;
+  margin: 0;
+  z-index: 1;
+  line-height: 2em;
+  font-size: 1em;
+  background: $header-highlight;
+  color: $header-highlight-text;
+  text-shadow: 1px 1px $header-highlight-text-shadow;
+  
+  html.home &, html.level-0 &, html.no-h1
+   height: 0.3em;
+   overflow: hidden;
+   padding: 0;
+  &, html.always-show-h1.home &, html.always-show-h1.level-0 &
+   height: 2em;
+   overflow: auto;
+   padding: 0 0.5em;
+  
+  img
+   @extends body > header nav ul li > a img;
+   @extends body > header nav > ul > li > a img;
+
+anchor-offset-top(offset)
+ error("offset must be non-negative") unless offset >= 0
+ a[name], a[id]
+  padding-top: offset;
+ [id], [name]
+  &:before
+   display: block;
+   content: "";
+   height: offset;
+   margin: -(offset) 0 0 0;
+ for h in $heading-sizes
+  h{h[0]}
+   &[id], &[name], [id], [name]
+    &:before
+     display: block;
+     content: "";
+     height: roundn((1 / h[1]) * offset, 2);
+     margin: roundn((1 / h[1]) * -(offset), 2) 0 0 0;
+    a[name], a[id]
+     padding-top: roundn((1 / h[1]) * offset, 2);
+
+main
+ display: table;
+ width: $width;
+ max-width: 100%;
+ margin: 0 auto;
+ background: $background-main;
+ color: $text;
+ box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.2);
+ text-shadow: none;
+ overflow-x: auto;
+ > :first-child:before
+  // hack to force a minimum height because `min-height` doesn't seem to
+  // work with `display: table`, even though the spec only says it shouldn't
+  // apply to table *columns*.
+  content: "";
+  display: block;
+  height: $background-main-height;
+  float: left;
+ 
+ html.home &, html.level-0 &
+  padding-top: 2.3em;
+  anchor-offset-top: 2.6em;
+ &, html.always-show-h1.home &, html.always-show-h1.level-0 &
+  padding-top: 4.0em;
+  anchor-offset-top: 4.3em;
+ 
+ > article, > aside
+  border-top: 0.3em solid transparent; //$background;
+  background: transparent; //$background;
+ > article
+  display: table-cell;
+  max-width: 0;
+  vertical-align: top;
+  padding: 0 0.5em 0.3em 0.5em;
+ > aside
+  display: table-cell;
+  vertical-align: top;
+  width: 16em;
+  padding-right: 0.5em;
+  border-bottom: 0.6em solid transparent; //$background;
+  border-left: 0.625em solid transparent; //$background;
+  font-size: 0.8em;
+  &:first-child
+   display: none;
+  > h2, > nav > h2, > section > h2
+   font-size: 1em;
+   font-weight: normal;
+   text-transform: uppercase;
+   letter-spacing: 0.5em;
+   color: $text + #333;
+   &:first-child
+    margin-top: 0.2em;
+  nav
+   ul
+    margin: 0;
+    padding-left: 1.2em;
+    > li
+     margin-top: 0.5em;
+     list-style: none;
+     line-height: 1.25em;
+     &:first-child
+      margin-top: 0.75em;
+   > ul
+    padding-left: 0;
+   + nav
+    margin-top: 1em;
+
+body > footer
+ margin: 0.625em 0.625em 0.125em;
+ line-height: 1em;
+ text-shadow: 1px 1px $outer-text-shadow;
+
+@import "mobile"

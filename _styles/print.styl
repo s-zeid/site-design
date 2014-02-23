@@ -1,0 +1,73 @@
+@import "config"
+
+/* This stylesheet is automatically generated using Stylus.  See the
+   original source at <http://s.zeid.me/source/_styles/print.styl>. */
+
+body
+ margin: 0;
+ background: #fff;
+ color: #000;
+
+body > header
+ font-size: 1.25em;
+ line-height: 1.5em;
+ nav
+  display: inline;
+  ul
+   display: inline;
+   padding: 0;
+  li
+   display: none;
+   &.home, &.parent, body > header > h1
+    display: inline;
+    list-style: none;
+    a
+     display: inline-block;
+     color: #000;
+     img
+      display: none;
+   &.parent
+    a:before
+     content: " » ";
+    &:before
+     content: "\A0";
+ h1
+  display: inline;
+  font-size: 1em;
+  &:before
+   content: " » ";
+   font-weight: normal;
+  html.home &, html.no-h1 &
+   &:before
+    content: "";
+  img
+   display: none;
+
+main
+ margin-top: 8.5pt;
+ 
+ > aside
+  display: none;
+
+body > footer
+ position: fixed; bottom: 0; left: 0; right: 0;
+ margin-top: 1.25em;
+ text-align: center;
+ 
+ a
+  color: $darker-links;
+
+.screen-only, .no-print
+ display: none;
+
+@media screen
+ html
+  max-width: 8.5in;
+  margin: 0 auto;
+  background: #333;
+ body
+  margin: 0.25in 0;
+  padding: 0.65in 0.8in;
+  box-shadow: 0 0 0.5in #000;
+  > footer
+   position: static;
