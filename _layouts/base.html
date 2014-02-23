@@ -98,14 +98,16 @@
   <main>
 {% endstrip %}{% indent 3 %}{{ content }}{% endindent %}{% strip %}  </main>
   <footer>
+   {% if site.portal.url %}
    <!--[if (!IE)|(gte IE 9)]><!-->
     <span id="portal-minibar" class="screen-only"
           style="float: right; height: 23px; margin-top: -.3em; padding-bottom: .3em;">
-      <iframe src="//s.zeid.me/more/?minibar&amp;horizontal&amp;highlight=s.zeid.me&amp;theme=new"
+      <iframe src="{{ site.portal.url }}?minibar&amp;horizontal{% if site.portal.highlight %}&amp;highlight={{ site.portal.highlight }}{% endif %}{% if site.portal.theme %}&amp;theme={{ site.portal.theme }}{% endif %}"
               style="width: 300px; height: 23px; border-style: none; overflow:hidden;">
       </iframe>
     </span>
    <!--<![endif]-->
+   {% endif %}
    <aside>
     <a href="https://youtu.be/DRm5WcjOikQ#t=1m46s" class="darker"
        title="You've got a nice Web site here.  We wouldn't want anything to *happen* to it....">&copy;</a>
