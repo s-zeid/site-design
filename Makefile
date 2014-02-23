@@ -9,7 +9,7 @@ build: css
 	jekyll build --config _template/_config.base.yml,_config.yml \
                      --destination $(BUILD_DIR)
 	cp -ar _template/_static/* $(BUILD_DIR)
-	cp -a _redirects _static/_redirects
+	cp -a _redirects $(BUILD_DIR)/_redirects
 	[ -d _static -a `ls -A _static | wc -l | cut -d' ' -f1` -ne 0 ] && \
 	 cp -ar _static/* $(BUILD_DIR) || true
 
