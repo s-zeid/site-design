@@ -30,6 +30,6 @@ Setup
 4.  Run `new-site <directory>`, where `<directory>` is the directory in which
     you want your site to reside.
 5.  Edit `_config.yml` (Jekyll configuration), `_config.styl` (stylesheet
-    variables, and `_postbuild` as desired.
+    variables), and `_postbuild` as desired.
 6.  Add some content!
 7.  Change into your site's directory and run `make`.
