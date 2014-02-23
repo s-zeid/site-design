@@ -2,7 +2,7 @@
 
 # This file is executed after the site is generated, but before it is
 # deployed (moved from ._build/ to _site/).  If you need anything to
-# be done at this time, put it here.  You can also use a different
+# be done at that time, put it here.  You can also use a different
 # language by changing the shebang line above.
 # 
 # This script is given two command-line arguments:  the first is the
