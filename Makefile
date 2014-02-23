@@ -19,4 +19,4 @@ css: _template/_static/styles/*.css
 
 _template/_static/styles/%.css: _template/_styles/%.styl
 	stylus _template/_styles -o _template/_static/styles
-	cp -ar _template/_static/styles/* _site/styles
+	[ -d _site/styles ] && cp -ar _template/_static/styles/* _site/styles || true
