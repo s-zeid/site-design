@@ -21,7 +21,7 @@ Setup
     
         fedora$ sudo yum install ruby rubygems nodejs npm make
         ubuntu$ sudo apt-get install ruby rubygems nodejs npm make
-        any-distro$ sudo npm install stylus
+        any-distro$ sudo npm -g install stylus
         any-distro$ sudo gem install jekyll stylus
     
     PHP 5 is an optional dependency, necessary only for the provided
@@ -33,6 +33,6 @@ Setup
 4.  Run `new-site <directory>`, where `<directory>` is the directory in which
     you want your site to reside.
 5.  Edit `_config.yml` (Jekyll configuration), `_config.styl` (stylesheet
-    variables), and `_postbuild` as desired.
+    variables), `_postbuild`, and `_redirects` as desired.
 6.  Add some content!
 7.  Change into your site's directory and run `make`.
