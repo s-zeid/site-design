@@ -32,6 +32,10 @@ if [ ! -e "$dir"/_config.yml ]; then
  cp -a "$dir"/_template/_config.dist.yml "$dir"/_config.yml
 fi
 
+if [ ! -e "$dir"/_config.styl ]; then
+ cp -a "$dir"/_template/_config.dist.styl "$dir"/_config.styl
+fi
+
 if [ ! -e "$dir"/_postbuild ]; then
  cp -a "$dir"/_template/_postbuild "$dir"/_postbuild
  chmod +x "$dir"/_postbuild

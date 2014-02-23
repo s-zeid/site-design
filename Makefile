@@ -21,7 +21,6 @@ deploy:
 
 css: _template/_static/styles/*.css
 
-_template/_static/styles/%.css: _template/_styles/%.styl
+_template/_static/styles/%.css: _template/_styles/%.styl _config.styl
 	stylus _template/_styles -o _template/_static/styles
-	[ -d $(SITE_DIR)/styles ] && \
-         cp -ar _template/_static/styles/* $(SITE_DIR)/styles || true
+	[ -d $(SITE_DIR)/styles ] && cp -ar _template/_static/styles/* $(SITE_DIR)/styles || true
