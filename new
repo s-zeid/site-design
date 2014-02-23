@@ -1,15 +1,16 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
+if [ -n "$1" ]; then
+ dir=$(readlink -m "$1")
+else
  echo "Usage: $0 directory [template-repository]" >&2
  exit 2
 fi
 
-dir=$(readlink -m "$1")
-repo=https://bitbucket.org/scottywz/site-design.git
-
 if [ -n "$2" ]; then
  repo=$2
+else
+ repo=https://bitbucket.org/scottywz/site-design.git
 fi
 
 if [ ! -e "$dir" ]; then
@@ -21,7 +22,7 @@ if [ ! -d "$dir" ]; then
  exit 1
 fi
 
-git clone https://bitbucket.org/scottywz/site-design.git "$dir"/_template
+git clone "$repo" "$dir"/_template
 
 if [ ! -e "$dir"/Makefile ]; then
  ln -s "$dir"/_template/Makefile "$dir"/Makefile
@@ -41,4 +42,3 @@ mkdir -p "$dir"/_drafts
 mkdir -p "$dir"/_posts
 mkdir -p "$dir"/_postfiles
 mkdir -p "$dir"/_static
-
