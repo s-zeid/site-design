@@ -1,5 +1,7 @@
-# This file specifies relative URLs to be redirected as per
-# <http://www.w3.org/Provider/Style/URI.html>.
+# This file specifies relative URLs to be redirected.  (Normally,
+# you should follow <http://www.w3.org/Provider/Style/URI.html>,
+# but if you *have* to change your URLs, you should at least
+# redirect the old ones.)
 # 
 # Entries are of the format `<old-url> => <new-url>`.  Lines
 # starting with a `#` are ignored as comments.  Lines may be
