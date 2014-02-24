@@ -3,7 +3,7 @@
 # but if you *have* to change your URLs, you should at least
 # redirect the old ones.)
 # 
-# Entries are of the format `<old-url> => <new-url>`.  Lines
+# Entries are of the format `<old-url> -> <new-url>`.  Lines
 # starting with a `#` are ignored as comments.  Lines may be
 # broken before and/or after the arrow.  You may also use an
 # equals sign instead of a hyphen.
