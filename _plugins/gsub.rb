@@ -24,7 +24,7 @@
 # other dealings in this Software without prior written authorization.
 
 module GSubFilter
- # https://github.com/Shopify/liquid/issues/202#issuecomment-19112872
+ # based on https://github.com/Shopify/liquid/issues/202#issuecomment-19112872
  def gsub(input, regex, replacement = '', options = "")
   options_num = 0
   options_num |= Regexp::IGNORECASE if options =~ /i/i
