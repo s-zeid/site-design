@@ -43,6 +43,10 @@
   <script type="text/javascript" src="{{ site.url }}/jquery.min.js"></script>
   <script type="text/javascript" src="{{ site.url }}/mobile.js"></script>
   <script type="text/javascript" src="{{ site.url }}/lightbox/lightbox.min.js"></script>
+{% if site.freecomment %}
+  <script type="text/javascript" src="{{ site.url }}/freecomment.js"></script>
+  <script type="text/javascript" src="{{ site.url }}/markdown.min.js"></script>
+{% endif %}
 {% endstrip %}{% if page.head %}{% indent 2 %}{{ page.head }}{% endindent %}{% endif %}{% strip %}{% if site.ganalytics %}  <script type="text/javascript">
    var _gaq = _gaq || [];
    _gaq.push(['_setAccount', '{{ site.ganalytics }}']);

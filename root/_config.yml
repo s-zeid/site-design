@@ -9,7 +9,12 @@ url:
 full-url:            http://john.doe.example
 ganalytics:          #UA-XXXXXX-Y    # Optional; uncomment to enable
 
-portal:    # Optional integration with <http://code.s.zeid.me/portal>
+freecomment:    # Free (libre) comment system <http://code.s.zeid.me/freecomment>
+ enabled:            #True    # Uncomment to enable
+ highlight:     # Comments with these Gravatar ID(s) will be highlighted
+  - 16d113840f999444259f73bac9ab8b10    # someone@example.com
+
+portal:         # Optional integration with <http://code.s.zeid.me/portal>
  url:                #//portal.john.doe.example/    # Uncomment to enable
  highlight:          john.doe.example
  theme:              new

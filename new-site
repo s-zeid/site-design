@@ -25,6 +25,8 @@ fi
 tpl_dir="$dir"/_template
 
 git clone "$repo" "$tpl_dir"
+git --git-dir="$tpl_dir"/.git --work-tree="$tpl_dir" submodule init
+git --git-dir="$tpl_dir"/.git --work-tree="$tpl_dir" submodule update
 
 if [ ! -e "$dir"/Makefile ]; then
  cp -a "$tpl_dir"/root/Makefile "$dir"/Makefile
@@ -56,3 +58,12 @@ mkdir -p "$dir"/_drafts
 mkdir -p "$dir"/_posts
 mkdir -p "$dir"/_postfiles
 mkdir -p "$dir"/_static
+
+if [ -d "$dir"/_comments ]; then
+ if [ ! -e "$dir"/_comments/freecomment.conf ]; then
+  cp -a "$tpl_dir"/root/_comments/freecomment.conf "$dir"/_comments/freecomment.conf
+ fi
+ if [ ! -e "$dir"/_comments/freecomment.php ]; then
+  cp -a "$tpl_dir"/root/_comments/freecomment.php "$dir"/_comments/freecomment.php
+ fi
+fi

@@ -39,4 +39,27 @@ layout: blog
 {% endif %}
 </header>{% endstrip %}
 
-{{ content }}
+{{ content }}{% if site.freecomment %}
+
+{% strip %}
+{% if site.freecomment.enabled %}
+<h2 id="comments">Comments</h2>
+<section id="freecomment"></section>
+<script type="text/javascript">
+ freecomment(
+             {{ site.url | jsonify }} + "/freecomment/",
+             {{ page.path | gsub: '^([^/\\]*[/\\])*','' | gsub: '\.[^.]*$','' | jsonify}},
+             {{ page.title | jsonify }},
+             {
+              "formatter": function(s) {
+               return (typeof(markdown) != "undefined") ? markdown.toHTML(s) : s;
+              },
+              {% if site.freecomment.highlight %}
+              "highlight": {{ site.freecomment.highlight | jsonify }},
+              {% endif %}
+              "html5": true,
+             }
+            ).load("freecomment");
+</script>
+{% endif %}
+{% endstrip %}{% endif %}
