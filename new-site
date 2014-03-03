@@ -45,6 +45,10 @@ if [ ! -e "$dir"/_redirects ]; then
  cp -a "$dir"/_template/root/_redirects "$dir"/_redirects
 fi
 
+if [ ! -e "$dir"/index.md ]; then
+ cp -a "$dir"/_template/root/index.md "$dir"/index.md
+fi
+
 mkdir -p "$dir"/_comments
 mkdir -p "$dir"/_drafts
 mkdir -p "$dir"/_posts
