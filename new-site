@@ -22,31 +22,33 @@ if [ ! -d "$dir" ]; then
  exit 1
 fi
 
-git clone "$repo" "$dir"/_template
+tpl_dir="$dir"/_template
+
+git clone "$repo" "$tpl_dir"
 
 if [ ! -e "$dir"/Makefile ]; then
- ln -s "$dir"/_template/root/Makefile "$dir"/Makefile
+ ln -s "$tpl_dir"/root/Makefile "$dir"/Makefile
 fi
 
 if [ ! -e "$dir"/_config.yml ]; then
- cp -a "$dir"/_template/root/_config.yml "$dir"/_config.yml
+ cp -a "$tpl_dir"/root/_config.yml "$dir"/_config.yml
 fi
 
 if [ ! -e "$dir"/_config.styl ]; then
- cp -a "$dir"/_template/root/_config.styl "$dir"/_config.styl
+ cp -a "$tpl_dir"/root/_config.styl "$dir"/_config.styl
 fi
 
 if [ ! -e "$dir"/_postbuild ]; then
- cp -a "$dir"/_template/root/_postbuild "$dir"/_postbuild
+ cp -a "$tpl_dir"/root/_postbuild "$dir"/_postbuild
  chmod +x "$dir"/_postbuild
 fi
 
 if [ ! -e "$dir"/_redirects ]; then
- cp -a "$dir"/_template/root/_redirects "$dir"/_redirects
+ cp -a "$tpl_dir"/root/_redirects "$dir"/_redirects
 fi
 
 if [ ! -e "$dir"/index.md ]; then
- cp -a "$dir"/_template/root/index.md "$dir"/index.md
+ cp -a "$tpl_dir"/root/index.md "$dir"/index.md
 fi
 
 mkdir -p "$dir"/_comments
