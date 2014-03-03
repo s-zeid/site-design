@@ -46,7 +46,7 @@ layout: blog
 <section id="freecomment"></section>
 <script type="text/javascript">
  freecomment(
-             ({{ site.url | jsonify }} || "") + "/freecomment/",
+             ({{ site.url | jsonify }} || "") + "/freecomment.php",
              {{ page.path | gsub: '^([^/\\]*[/\\])*','' | gsub: '\.[^.]*$','' | jsonify}},
              {{ page.title | jsonify }},
              {
