@@ -25,24 +25,24 @@ fi
 git clone "$repo" "$dir"/_template
 
 if [ ! -e "$dir"/Makefile ]; then
- ln -s "$dir"/_template/Makefile "$dir"/Makefile
+ ln -s "$dir"/_template/root/Makefile "$dir"/Makefile
 fi
 
 if [ ! -e "$dir"/_config.yml ]; then
- cp -a "$dir"/_template/_config.dist.yml "$dir"/_config.yml
+ cp -a "$dir"/_template/root/_config.yml "$dir"/_config.yml
 fi
 
 if [ ! -e "$dir"/_config.styl ]; then
- cp -a "$dir"/_template/_config.dist.styl "$dir"/_config.styl
+ cp -a "$dir"/_template/root/_config.styl "$dir"/_config.styl
 fi
 
 if [ ! -e "$dir"/_postbuild ]; then
- cp -a "$dir"/_template/_postbuild "$dir"/_postbuild
+ cp -a "$dir"/_template/root/_postbuild "$dir"/_postbuild
  chmod +x "$dir"/_postbuild
 fi
 
 if [ ! -e "$dir"/_redirects ]; then
- cp -a "$dir"/_template/_redirects "$dir"/_redirects
+ cp -a "$dir"/_template/root/_redirects "$dir"/_redirects
 fi
 
 mkdir -p "$dir"/_comments

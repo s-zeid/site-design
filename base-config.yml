@@ -1,5 +1,5 @@
-layouts:             ./_template/_layouts
-plugins:             ./_template/_plugins
+layouts:             ./_template/layouts
+plugins:             ./_template/plugins
 
 permalink:           /blog/:year/:month/:day/:title/
 relative_permalinks: True

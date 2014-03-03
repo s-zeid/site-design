@@ -6,9 +6,9 @@ SITE_DIR  := _site
 all: build postbuild deploy
 
 build: css
-	jekyll build --config _template/_config.base.yml,_config.yml \
+	jekyll build --config _template/base-config.yml,_config.yml \
 	             --destination $(BUILD_DIR)
-	cp -ar _template/_static/* $(BUILD_DIR)
+	cp -ar _template/static/* $(BUILD_DIR)
 	cp -a _redirects $(BUILD_DIR)/_redirects
 	[ -d _static -a `ls -A _static | wc -l | cut -d' ' -f1` -ne 0 ] && \
 	 cp -ar _static/* $(BUILD_DIR) || true
@@ -20,9 +20,9 @@ deploy:
 	rm -rf $(SITE_DIR)
 	mv $(BUILD_DIR) $(SITE_DIR)
 
-css: _template/_static/styles/*.css
+css: _template/static/styles/*.css
 
-_template/_static/styles/%.css: _template/_styles/%.styl _config.styl
-	stylus _template/_styles -o _template/_static/styles
+_template/static/styles/%.css: _template/styles/%.styl _config.styl
+	stylus _template/styles -o _template/static/styles
 	[ -d $(SITE_DIR)/styles ] && \
-	 cp -ar _template/_static/styles/* $(SITE_DIR)/styles || true
+	 cp -ar _template/static/styles/* $(SITE_DIR)/styles || true
