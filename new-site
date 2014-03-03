@@ -27,7 +27,7 @@ tpl_dir="$dir"/_template
 git clone "$repo" "$tpl_dir"
 
 if [ ! -e "$dir"/Makefile ]; then
- ln -s "$tpl_dir"/root/Makefile "$dir"/Makefile
+ cp -a "$tpl_dir"/root/Makefile "$dir"/Makefile
 fi
 
 if [ ! -e "$dir"/_config.yml ]; then
