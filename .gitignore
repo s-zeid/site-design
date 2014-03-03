@@ -1,4 +1,4 @@
 .*.swp
-_static/styles/*
-!_static/styles/.gitinclude
+static/styles/*
+!static/styles/.gitinclude
 test
