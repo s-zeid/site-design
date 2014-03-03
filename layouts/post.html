@@ -39,15 +39,14 @@ layout: blog
 {% endif %}
 </header>{% endstrip %}
 
-{{ content }}{% if site.freecomment %}
+{{ content }}{% if site.freecomment.enabled %}
 
 {% strip %}
-{% if site.freecomment.enabled %}
 <h2 id="comments">Comments</h2>
 <section id="freecomment"></section>
 <script type="text/javascript">
  freecomment(
-             {{ site.url | jsonify }} + "/freecomment/",
+             ({{ site.url | jsonify }} || "") + "/freecomment/",
              {{ page.path | gsub: '^([^/\\]*[/\\])*','' | gsub: '\.[^.]*$','' | jsonify}},
              {{ page.title | jsonify }},
              {
@@ -61,5 +60,4 @@ layout: blog
              }
             ).load("freecomment");
 </script>
-{% endif %}
 {% endstrip %}{% endif %}
