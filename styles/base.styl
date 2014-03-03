@@ -166,13 +166,15 @@ main
   img
    max-width: 100%;
 
-main > article > header p, main > article > header div, main > article > header section,
-nav li time
- font-size: smaller;
- color: $text-lighter;
+main article header:not(.freecomment-header)
+ p, div, section
+  font-size: smaller;
+  color: $text-lighter;
 
 nav li time
  display: block;
+ font-size: smaller;
+ color: $text-lighter;
 
 body > footer
  font-size: 0.8em;

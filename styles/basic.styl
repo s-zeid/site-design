@@ -30,9 +30,10 @@ body > header
 main
  margin: 1em 0;
 
-main > article > header p, main > article > header div, main > article > header section
- font-size: inherit;
- color: inherit;
+main article header:not(.freecomment-header)
+ p, div, section
+  font-size: inherit;
+  color: inherit;
 
 body > footer
  color: $outer-text;
