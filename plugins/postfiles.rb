@@ -1,3 +1,9 @@
+# jekyll-postfiles
+# <https://github.com/indirect/jekyll-postfiles>
+# 
+# (C) André Arko.  MIT licensed per
+# <https://github.com/indirect/jekyll-postfiles/issues/5#issuecomment-36482383>.
+
 module Jekyll
   
   # StaticFile subclass that properly translates paths
