@@ -1,9 +1,9 @@
-.PHONY: css deploy postbuild
+.PHONY: css move postbuild
 
 BUILD_DIR := ._build
 SITE_DIR  := _site
 
-all: build postbuild deploy
+all: build postbuild move
 
 build: css
 	jekyll build --config _template/base-config.yml,_config.yml \
@@ -16,7 +16,7 @@ build: css
 postbuild:
 	if [ -x _postbuild ]; then ./_postbuild $(BUILD_DIR) $(SITE_DIR); fi
 
-deploy:
+move:
 	rm -rf $(SITE_DIR)
 	mv $(BUILD_DIR) $(SITE_DIR)
 
