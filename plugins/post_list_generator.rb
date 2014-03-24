@@ -1,3 +1,10 @@
+# This is based on code from <http://jekyllrb.com/docs/plugins/#generators>
+# (originally from <https://github.com/jekyll/jekyll/wiki/Plugins/6081f49#generators>).
+# Copyright (c) 2013 Tom Preston-Werner
+# MIT licensed per the site's footer.
+
+# Modifications (c) 2012 Scott Zeid and released under the X11 license.
+
 module Jekyll
  class PostList < Page
   def initialize(site, base, dir, type, name)

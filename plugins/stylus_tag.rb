@@ -1,3 +1,8 @@
+# (c) Adam Spooner
+# https://gist.github.com/adamjspooner/988201#file-stylus_converter-rb
+# 
+# This is PROPRIETARY because it has no license.
+
 # A Jekyll plugin to convert .styl to .css
 # This plugin requires the stylus gem, do:
 # $ [sudo] gem install stylus

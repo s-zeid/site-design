@@ -1,3 +1,7 @@
+# From Jekyll core
+# Copyright (c) 2008-2012 (this is an old version) Tom Preston-Werner
+# MIT License per <https://github.com/jekyll/jekyll/blob/cf14bc6/LICENSE>
+
 module Jekyll
 
   class PostComparer
