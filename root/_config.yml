@@ -17,7 +17,7 @@ freecomment:    # Free/libre comment system <http://code.s.zeid.me/freecomment>
 internet-defense-league:    # Internet Defense League campaigns
  # Note:  any variable set here will be passed to the `window._idl` object.
  enabled:            #True    # Uncomment to enable
- is_test:            #True    # Uncomment to test a campaign
+ test:               #True    # Uncomment to test a campaign
  # Optional settings; blank values mean to use the defaults:
  campaign:           # The campaign to show (default: show all campaigns)
  variant:            # The variant to use (e.g. banner, modal; default: banner)
