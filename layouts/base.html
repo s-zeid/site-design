@@ -127,18 +127,16 @@
    </aside-->
   </footer>
   {% if site.internet-defense-league.enabled %}
-  <!--[if !(lt IE 8)]><!--> 
-   <script type="text/javascript">
-    window._idl = {{ site.internet-defense-league | jsonify }};
-    (function() {
-     var idl = document.createElement('script');
-     idl.type = 'text/javascript';
-     idl.async = true;
-     idl.src = 'https://members.internetdefenseleague.org/include/?url=' + (_idl.url || '') + '&campaign=' + (_idl.campaign || '') + '&variant=' + (_idl.variant || 'modal');
-     document.getElementsByTagName('body')[0].appendChild(idl);
-    })();
-   </script>
-  <!--<![endif]-->
+  <script type="text/javascript">
+   window._idl = {{ site.internet-defense-league | jsonify }};
+   (function() {
+    var idl = document.createElement('script');
+    idl.type = 'text/javascript';
+    idl.async = true;
+    idl.src = 'https://members.internetdefenseleague.org/include/?url=' + (_idl.url || '') + '&campaign=' + (_idl.campaign || '') + '&variant=' + (_idl.variant || 'modal');
+    document.getElementsByTagName('body')[0].appendChild(idl);
+   })();
+  </script>
   {% endif %}
  </body>
 </html>{% endstrip %}{% comment %} vim: set ft=liquid: {% endcomment %}
