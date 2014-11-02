@@ -2,7 +2,7 @@
 
 $redirects_text = file_get_contents("_redirects");
 $redirects_text = preg_replace('/\s+[-=]>\s+/', ' => ', $redirects_text);
-$redirects_text = str_replace("\r\n", "\n", str_replace("\r", "\n", $redirects_text));
+$redirects_text = str_replace("\r", "\n", str_replace("\r\n", "\n", $redirects_text));
 $redirect_lines = explode("\n", $redirects_text);
 
 $redirects = array();
