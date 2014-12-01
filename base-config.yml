@@ -3,7 +3,7 @@ plugins:             ./_template/plugins
 
 permalink:           /blog/:year/:month/:day/:title/
 relative_permalinks: True
-pygments:            True
+highlighter:         pygments
 category-dir:        /blog/categories
 tag-dir:             /blog/tags
 

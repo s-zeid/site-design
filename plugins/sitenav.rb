@@ -148,7 +148,7 @@ module Jekyll
     original_nav = (page["nav"].nil?) ? {} : page["nav"]
     next if original_nav["show"] == false or original_nav["hide"] == true
     @@child_list[slug] = children = self.make_tree(site, slug_no_end_slash)
-    page = page.deep_merge({"nav" => {
+    page = Jekyll::Utils::deep_merge_hashes(page, {"nav" => {
      "current"  => lambda {|ctx|
       cnav = (ctx["page"]["nav"].nil?) ? {} : ctx["page"]["nav"]
       (ctx["page"]["url"] == page["url"] or
