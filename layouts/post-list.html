@@ -5,7 +5,7 @@ layout: blog
 {% if content and content != "" %}{{ content }}
 {% endif %}{% for p in site.posts %}{% if p.tags contains page.tag or p.categories contains page.category or (page.tag == null and page.category == null) %}{% strip %}<article>
  <header>
-  <h2><a href="{% dotdot %}{{ p.url }}">{{ p.title }}</a></h2>
+  <h2><a href="{% root %}{{ p.url }}">{{ p.title }}</a></h2>
   <section class="date">
    Posted on
    <time datetime="{{ p.date | date: "%Y-%m-%dT%H:%M:%S" }}">
@@ -21,7 +21,7 @@ layout: blog
  the regex, as we're trying to match only the *last* comma in the entire list.
 {% endcomment %}
 {% capture category_list %}{% for category in p.categories %} 
-   <a href="{% dotdot %}/blog/categories/{{ category | uri_escape }}">{{category}}</a>,
+   <a href="{% root %}/blog/categories/{{ category | uri_escape }}">{{category}}</a>,
 {% endfor %}{% endcapture %}
 {{ category_list | gsub:',\n$','' }}
   </section>
@@ -35,7 +35,7 @@ layout: blog
  the regex, as we're trying to match only the *last* comma in the entire list.
 {% endcomment %}
 {% capture tag_list %}{% for tag in p.tags %} 
-   <a href="{% dotdot %}/blog/tags/{{ tag | uri_escape }}">{{tag}}</a>,
+   <a href="{% root %}/blog/tags/{{ tag | uri_escape }}">{{tag}}</a>,
 {% endfor %}{% endcapture %}
 {{ tag_list | gsub:',\n$','' }}
   </section>

@@ -18,7 +18,7 @@ layout: blog
  the regex, as we're trying to match only the *last* comma in the entire list.
 {% endcomment %}
 {% capture category_list %}{% for category in page.categories %} 
-  <a href="{% dotdot %}/blog/categories/{{ category | uri_escape }}">{{category}}</a>,
+  <a href="{% root %}/blog/categories/{{ category | uri_escape }}">{{category}}</a>,
 {% endfor %}{% endcapture %}
 {{ category_list | gsub:',\n$','' }}
  </section>
@@ -32,7 +32,7 @@ layout: blog
  the regex, as we're trying to match only the *last* comma in the entire list.
 {% endcomment %}
 {% capture tag_list %}{% for tag in page.tags %} 
-  <a href="{% dotdot %}/blog/tags/{{ tag | uri_escape }}">{{tag}}</a>,
+  <a href="{% root %}/blog/tags/{{ tag | uri_escape }}">{{tag}}</a>,
 {% endfor %}{% endcapture %}
 {{ tag_list | gsub:',\n$','' }}
  </section>
@@ -42,12 +42,12 @@ layout: blog
 {{ content }}{% if site.freecomment.enabled %}
 
 {% strip %}
-{% capture dotdot %}{% dotdot %}{% endcapture %}
+{% capture root %}{% root %}{% endcapture %}
 <h2 id="comments">Comments</h2>
 <section id="freecomment"></section>
 <script type="text/javascript">
  freecomment(
-             ({{ dotdot | jsonify }} || "") + "/freecomment.php",
+             ({{ root | jsonify }} || "") + "/freecomment.php",
              {{ page.path | gsub: '^([^/\\]*[/\\])*','' | gsub: '\.[^.]*$','' | jsonify}},
              {{ page.title | jsonify }},
              {

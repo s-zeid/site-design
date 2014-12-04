@@ -24,7 +24,7 @@
 # other dealings in this Software without prior written authorization.
 
 module Jekyll
- class DotDotTag < Liquid::Tag
+ class RootTag < Liquid::Tag
   include Liquid::StandardFilters
   
   def initialize(tag_name, url, tokens)
@@ -40,24 +40,28 @@ module Jekyll
    else
     @url
    end
-   DotDotTag.to_dotdot((url == "") ? context["page"]["url"] : url)
+   RootTag.get_relative_root((url == "") ? context["page"]["url"] : url)
   end
   
-  def self.to_dotdot(url)
+  def self.get_relative_root(url)
    dotdot = url.gsub(/^\//, "").gsub(/[^\/]+$/, "").gsub(/[^\/]+\//, "../")
    dotdot = dotdot.gsub(/\/+$/, "")
    return (not dotdot.empty?) ? dotdot : "."
   end
  end
  
- class DotDotForTag < Liquid::Block
+ class RootForTag < Liquid::Block
   include Liquid::StandardFilters
   
   def render(context)
-   DotDotTag.to_dotdot(super.strip)
+   RootTag.get_relative_root(super.strip)
   end
  end
 end
 
-Liquid::Template.register_tag("dotdot", Jekyll::DotDotTag)
-Liquid::Template.register_tag("dotdotfor", Jekyll::DotDotForTag)
+Liquid::Template.register_tag("root", Jekyll::RootTag)
+Liquid::Template.register_tag("rootfor", Jekyll::RootForTag)
+
+# old names
+Liquid::Template.register_tag("dotdot", Jekyll::RootTag)
+Liquid::Template.register_tag("dotdotfor", Jekyll::RootForTag)

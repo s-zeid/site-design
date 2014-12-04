@@ -43,7 +43,7 @@ layout: base
     <li class="{%if p.nav.current%}current{%elsif p.nav.parent%}parent{%endif%}{%if p.title == "Home"%} home{%endif%}{%if p.nav.has_children%} has-children{%endif%}">
     {% endcapture %}
     {{ li | replace: 'class=" ', 'class="' | replace: ' class=""', "" }}
-     <a href="{%if p.nav.url%}{{p.nav.url}}{%else%}{%dotdot%}{{p.nav.slug}}{%endif%}"{%if p.nav.target%} target="{{p.nav.target}}"{%endif%}>
+     <a href="{%if p.nav.url%}{{p.nav.url}}{%else%}{%root%}{{p.nav.slug}}{%endif%}"{%if p.nav.target%} target="{{p.nav.target}}"{%endif%}>
      {% if p.menu-text %}
       {{p.menu-text}}
      {% elsif p.title != "Home" %}
@@ -65,7 +65,7 @@ layout: base
   <ul>
   {% for p in site.posts limit:3 %}
    <li>
-    <a href="{% dotdot %}{{ p.url }}">{{ p.title }}</a>
+    <a href="{% root %}{{ p.url }}">{{ p.title }}</a>
     <time datetime="{{ p.date | date: "%Y-%m-%d" }}">
      {{ p.date | date: "%A, %B %d, %Y" }}
     </time>
