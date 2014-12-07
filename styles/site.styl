@@ -1,0 +1,40 @@
+@import "config"
+@import "helpers"
+
+/* This stylesheet is automatically generated using Stylus.  See the
+   original source at <http://code.s.zeid.me/site-design/src/master/_styles/site.styl>. */
+
+@import "base"
+
+main
+ > article
+  nav.subpage
+   margin-top: 0.5em;
+   ul
+    display: table;
+    margin: 0;
+    padding-left: 0;
+    > li
+     display: table-row-group;
+     list-style: none;
+     > a, > p
+      display: table-row;
+      > span
+       display: table-cell;
+       vertical-align: middle;
+     > a
+      line-height: 2em;
+      font-weight: bold;
+      img
+       margin-right: 0.5em;
+       for type in min max
+        for dim in width height
+         {type}-{dim}: 16px;
+       @media (min-resolution: 160dpi),
+              handheld, (max-width: 480px), (max-device-width: 480px)
+        for type in min max
+         for dim in width height
+          {type}-{dim}: 22px;
+     &:not(:last-child) > p
+      > span
+       padding-bottom: 0.5em;

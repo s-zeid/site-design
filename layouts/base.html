@@ -27,7 +27,7 @@
   {% if page.title == "Home" or page.url contains "/blog/" %}
   <link rel="alternate" type="application/atom+xml" href="{% root %}/blog/feed" title="ATOM feed" />
   {% endif %}
-  <link rel="stylesheet" type="text/css" href="{% root %}/styles/base.css" />
+  <link rel="stylesheet" type="text/css" href="{% root %}/styles/site.css" />
   <!--[if (!IE)|(gte IE 8)]><!-->
    <link rel="stylesheet" type="text/css" href="{% root %}/styles/screen.css" media="screen" title="Screen" />
    <link rel="stylesheet alternate" type="text/css" href="{% root %}/styles/print.css" media="screen" title="Print" />
@@ -56,8 +56,8 @@
      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
    })();
-  </script>{% endif %}
- </head>
+  </script>
+{% endif %} </head>
  <body>
   <header>
    {% capture header_nav %}

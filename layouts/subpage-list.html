@@ -19,8 +19,37 @@ layout: base
  <p style="font-size: 1.25em;">
   Until it is fixed, you can still read the contents of this page below.
  </p>
-</section>{% endcomment %}<article>
-{% endstrip %}{% indent 1 %}{{ content }}{% endindent %}</article>{% strip %}{% capture aside %}<aside>
+</section>{% endcomment %}{% capture content_not_blank %}{{ content | strip_newlines | size | replace: '0','' }}{% endcapture %}{% comment %}
+{% endcomment %}<article>{% endstrip %}
+{% indent 1 %}{% if content_not_blank != "" %}{{ content }}
+{% endif %}{% strip %}<nav class="subpage">
+ {% sitenav page.url %}{% raw %}
+ <ul>
+ {% for p in nav.pages %}
+  {% capture li %}
+  <li class="{%if p.nav.current%} current{%elsif p.nav.parent%} parent{%endif%}{%if p.title == "Home"%} home{%endif%}{%if p.nav.has_children%} has-children{%endif%}">
+  {% endcapture %}
+  {{ li | replace: 'class=" ', 'class="' | replace: ' class=""', "" }}
+   <a href="{%if p.nav.url%}{{p.nav.url|uri_escape}}{%else%}{%root%}{{p.nav.slug|uri_escape}}{%endif%}"{%if p.nav.target%} target="{{p.nav.target|xml_escape}}"{%endif%}>
+    <span>{% if p.icon %}<img src="{% root %}{% if p.nav.dir != "/" %}{{ p.nav.dir | uri_escape }}{% endif %}/{{ p.icon | uri_escape }}" alt="" class="left" />{% endif %}</span>
+   {% if p.subpage-text %}
+    <span>{{p.subpage-text}}</span>
+   {% elsif p.title != "Home" %}
+    <span>{{p.nav.title}}</span>
+   {% else %}
+    <span>{{site.name}}</span>
+   {% endif %}
+   </a>
+   <p>
+    <span></span>
+    <span>{% if p.description %}{{ p.description | xml_escape | gsub:'\n$','' }}{% endif %}</span>
+   </p>
+  </li>
+ {% endfor %}
+ </ul>
+ {% endraw %}{% endsitenav %}
+</nav>{% endstrip %}{% endindent %}
+</article>{% strip %}{% capture aside %}<aside>
  {% if page.contents %}
  <nav class="screen-only">
   <h2>Contents</h2>
@@ -32,32 +61,6 @@ layout: base
  </nav>
  {% endif %}
  {% capture non_contents %}
- {% capture subpages_nav %}
- <nav>
-  <h2>Subpages</h2>
-  {% sitenav page.url %}{% raw %}
-   <ul>
-   {% for p in nav.pages %}
-    {% capture li %}
-    <li class="{%if p.nav.current%}current{%elsif p.nav.parent%}parent{%endif%}{%if p.title == "Home"%} home{%endif%}{%if p.nav.has_children%} has-children{%endif%}">
-    {% endcapture %}
-    {{ li | replace: 'class=" ', 'class="' | replace: ' class=""', "" }}
-     <a href="{%if p.nav.url%}{{p.nav.url|uri_escape}}{%else%}{%root%}{{p.nav.slug|uri_escape}}{%endif%}"{%if p.nav.tooltip%} title="{{p.nav.tooltip|xml_escape}}"{%elsif p.description%} title="{{p.description|xml_escape}}"{%endif%}{%if p.nav.target%} target="{{p.nav.target|xml_escape}}"{%endif%}>
-     {% if p.menu-text %}
-      {{p.menu-text}}
-     {% elsif p.title != "Home" %}
-      {{p.nav.title}}
-     {% else %}
-      {{site.name}}
-     {% endif %}
-     </a>
-    </li>
-   {% endfor %}
-   </ul>
-  {% endraw %}{% endsitenav %}
- </nav>
- {% endcapture %}
- {% if subpages_nav contains "<li>" or subpages_nav contains "Liquid error:" %}{{ subpages_nav }}{% endif %}
  {% if page.title == "Home" %}
  <nav>
   <h2>Recent Posts</h2>
