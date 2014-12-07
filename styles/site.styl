@@ -17,12 +17,14 @@ main
     > li
      display: table-row-group;
      list-style: none;
-     > a, > p
+     > a, > span, > p
       display: table-row;
-      > span
+      > a, > span
        display: table-cell;
        vertical-align: middle;
-     > a
+       &:hover + span > a
+        text-decoration: underline;
+     > a, > span
       line-height: 2em;
       font-weight: bold;
       img

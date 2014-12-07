@@ -30,16 +30,17 @@ layout: base
   <li class="{%if p.nav.current%} current{%elsif p.nav.parent%} parent{%endif%}{%if p.title == "Home"%} home{%endif%}{%if p.nav.has_children%} has-children{%endif%}">
   {% endcapture %}
   {{ li | replace: 'class=" ', 'class="' | replace: ' class=""', "" }}
-   <a href="{%if p.nav.url%}{{p.nav.url|uri_escape}}{%else%}{%root%}{{p.nav.slug|uri_escape}}{%endif%}"{%if p.nav.target%} target="{{p.nav.target|xml_escape}}"{%endif%}>
-    <span>{% if p.icon %}<img src="{% root %}{% if p.nav.dir != "/" %}{{ p.nav.dir | uri_escape }}{% endif %}/{{ p.icon | uri_escape }}" alt="" class="left" />{% endif %}</span>
+   {% capture a %}<a href="{%if p.nav.url%}{{p.nav.url|uri_escape}}{%else%}{%root%}{{p.nav.slug|uri_escape}}{%endif%}"{%if p.nav.target%} target="{{p.nav.target|xml_escape}}"{%endif%}>{% endcapture %}{% comment %}</a>{% endcomment %}
+   <span>
+    {{ a }}{% if p.icon %}<img src="{% root %}{% if p.nav.dir != "/" %}{{ p.nav.dir | uri_escape }}{% endif %}/{{ p.icon | uri_escape }}" alt="" class="left" />{% endif %}</a>
    {% if p.subpage-text %}
-    <span>{{p.subpage-text}}</span>
+    <span>{{ a }}{{p.subpage-text}}</a></span>
    {% elsif p.title != "Home" %}
-    <span>{{p.nav.title}}</span>
+    <span>{{ a }}{{p.nav.title}}</a></span>
    {% else %}
-    <span>{{site.name}}</span>
+    <span>{{ a }}{{site.name}}</a></span>
    {% endif %}
-   </a>
+   </span>
    <p>
     <span></span>
     <span>{% if p.description %}{{ p.description | xml_escape | gsub:'\n$','' }}{% endif %}</span>
