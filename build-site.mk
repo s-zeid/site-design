@@ -23,6 +23,8 @@ move:
 css: _template/static/styles/*.css
 
 _template/static/styles/%.css: _template/styles/%.styl _config.styl
-	stylus _template/styles -o _template/static/styles
+	for styl in `ls -d _template/styles/*.styl | sort -g`; do \
+	 stylus "$$styl" -o _template/static/styles; \
+	done
 	[ -d $(SITE_DIR)/styles ] && \
 	 cp -ar _template/static/styles/* $(SITE_DIR)/styles || true
