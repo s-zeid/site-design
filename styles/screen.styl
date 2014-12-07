@@ -62,7 +62,7 @@ body > header
      &:hover, &:focus
       text-decoration: none;
      img
-      margin: 0.5em 0.5em 0 0;
+      margin: 0.5em 0 0 0.5em;
       float: left;
       width: auto; height: auto;
       for type in min max
@@ -71,7 +71,7 @@ body > header
      & > span
       display: table-cell;
       vertical-align: top;
-      padding: 0 0 0 0.5em;
+      margin: 0 0 0 0.5em;
      & > span + span
       display: block;
       padding: 0 0.5em 0 0;
@@ -113,6 +113,8 @@ body > header
       float: none;
       &:hover > ul
        margin: -2em 0 0 100%;
+  & > ul > li > ul
+   min-width: 100%;
   & > ul
    &:after
     /* Fix ClearType text bug on Firefox/Windows */
@@ -131,7 +133,7 @@ body > header
      color: $header-text;
      text-shadow: 1px 1px $header-text-shadow;
      img
-      margin-right: 0.25em;
+      margin-right: -0.25em;
     &:hover, &.home:first-child > a:hover
      box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
     &.home:first-child
