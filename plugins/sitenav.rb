@@ -104,8 +104,10 @@ module Jekyll
   
   def generate_output(tree, context, template, level=0)
    return if tree == nil or tree.empty?
-   pages = tree.collect do |i|
+   pages = tree.collect {|i|
     nav = i["page"]["nav"]
+    original_nav = nav["original"]
+    next if original_nav["show"] == false or original_nav["hide"] == true
     i["page"].merge({ "nav" => nav.merge(nav) { |k, v, unused|
      if k == "children"
       generate_output(v, context, template, level + 1)
@@ -113,7 +115,7 @@ module Jekyll
       (v.is_a? Proc) ? v.call(context) : v
      end
     }})
-   end
+   }.delete_if {|p| p.nil?}
    output = ""
    context.stack do
     context["nav"] = {
@@ -146,7 +148,6 @@ module Jekyll
     next if not slug_no_end_slash.start_with?(parent + "/")
     previous = slug_no_end_slash
     original_nav = (page["nav"].nil?) ? {} : page["nav"]
-    next if original_nav["show"] == false or original_nav["hide"] == true
     @@child_list[slug] = children = self.make_tree(site, slug_no_end_slash)
     page = Jekyll::Utils::deep_merge_hashes(page, {"nav" => {
      "current"  => lambda {|ctx|
