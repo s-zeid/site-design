@@ -40,7 +40,36 @@ module Jekyll
    else
     @url
    end
-   RootTag.get_relative_root((url == "") ? context["page"]["url"] : url)
+   
+   use_absolute_root = false
+   if context["site"]["use-absolute-root"]
+    case context["page"]["use-absolute-root"]
+    when false, 0
+     use_absolute_root = false
+    else
+     use_absolute_root = true
+    end
+   else
+    if context["page"]["use-absolute-root"]
+     use_absolute_root = true
+    end
+   end
+   
+   if use_absolute_root
+    RootTag.get_absolute_root(context["site"])
+   else
+    RootTag.get_relative_root((url == "") ? context["page"]["url"] : url)
+   end
+  end
+  
+  def self.get_absolute_root(site)
+   if site["full-url"]
+    return site["full-url"]
+   elsif site["url"]
+    return site["url"]
+   else
+    return ""
+   end
   end
   
   def self.get_relative_root(url)
