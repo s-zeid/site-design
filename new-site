@@ -25,8 +25,11 @@ fi
 tpl_dir="$dir"/_template
 
 git clone "$repo" "$tpl_dir"
-git --git-dir="$tpl_dir"/.git --work-tree="$tpl_dir" submodule init
-git --git-dir="$tpl_dir"/.git --work-tree="$tpl_dir" submodule update
+(
+ cd "$tpl_dir"
+ git submodule init
+ git submodule update
+)
 
 if [ ! -e "$dir"/Makefile ]; then
  cp -a "$tpl_dir"/root/Makefile "$dir"/Makefile
