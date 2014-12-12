@@ -165,6 +165,9 @@ module Jekyll
      "children" => children,
      "has_children" => children.length > 0
     }})
+    page["nav"]["has_children"] = children.collect {|i|
+     next if original_nav["show"] == false or original_nav["hide"] == true
+    }.delete_if {|p| p.nil?}.length > 0
     {"slug" => slug, "page" => page, "children" => children}
    }.delete_if {|p| p.nil?}.sort {|a, b|
     self.sort_key(a) <=> self.sort_key(b)
