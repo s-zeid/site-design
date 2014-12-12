@@ -165,8 +165,12 @@ module Jekyll
      "children" => children,
      "has_children" => children.length > 0
     }})
-    page["nav"]["has_children"] = children.collect {|i|
-     next if original_nav["show"] == false or original_nav["hide"] == true
+    page["nav"]["has_children"] = children.collect {|p|
+     if p["page"] and p["page"]["nav"] and p["page"]["nav"]["original"] then
+      p_original_nav = p["page"]["nav"]["original"]
+      next if p_original_nav["show"] == false or p_original_nav["hide"] == true
+     end
+     p
     }.delete_if {|p| p.nil?}.length > 0
     {"slug" => slug, "page" => page, "children" => children}
    }.delete_if {|p| p.nil?}.sort {|a, b|
