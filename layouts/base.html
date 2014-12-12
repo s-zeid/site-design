@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+{% if page.before-html %}{{ page.before-html }}{% endif %}<!DOCTYPE html>
 {% strip %}
 {% if page.title == "Home" %}{% assign home = true %}{% endif %}
 <html class="level-{% sitenavlevel %}{% if home %} home{% endif %}{% if page.h1 %} always-show-h1{% endif %}{%if page.h1 == false %} no-h1{%endif%}" data-root="{% capture root_html_data %}{% root %}{% endcapture %}{{ root_html_data | xml_escape }}">
  <head>
   <meta charset="utf-8" />
   {% if page.html-title and home == null %}
-  <title>{{ page.html-title|strip_html }} &middot; {{ site.name | strip_html }}</title>
+  <title>{% if page.raw-html-title %}{{ page.html-title }}{% else %}{{ page.html-title|strip_html }}{% endif %} &middot; {{ site.name | strip_html }}</title>
   {% elsif page.title and home == null %}
-  <title>{{ page.title | strip_html }} &middot; {{ site.name | strip_html }}</title>
+  <title>{% if page.raw-html-title %}{{ page.title }}{% else %}{{ page.title|strip_html }}{% endif %} &middot; {{ site.name | strip_html }}</title>
   {% else %}
   <title>{{ site.name | strip_html }}</title>
   {% endif %}
@@ -139,4 +139,5 @@
   </script>
   {% endif %}
  </body>
-</html>{% endstrip %}{% comment %} vim: set ft=liquid: {% endcomment %}
+</html>{% endstrip %}{% if page.after-html %}{{ page.after-html }}{% endif %}{% comment %}
+vim: set ft=liquid: {% endcomment %}
