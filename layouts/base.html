@@ -27,7 +27,7 @@
   {% if page.og-image %}
   {% capture absroot %}{% absroot %}{% endcapture %}
   {% capture absroot_has_scheme %}{{ absroot | gsub: '^//.*$','' }}{% endcapture %}
-  <meta property="og:image" content="{% if absroot_has_scheme == "" %}{% if site.default-scheme %}{{ site.default-scheme }}:{% endif %}{% endif %}{{ absroot }}{{ page.url | gsub: '/[^/]*','' }}/{{ page.og-image }}" />
+  <meta property="og:image" content="{% if absroot_has_scheme == "" %}{% if site.default-scheme %}{{ site.default-scheme }}:{% endif %}{% endif %}{{ absroot }}{{ page.url | gsub: '/[^/]*$','' }}/{{ page.og-image }}" />
   {% endif %}
   {% if page.title == "Home" or page.url contains "/blog/" %}
   <link rel="alternate" type="application/atom+xml" href="{% root %}/blog/feed" title="ATOM feed" />
