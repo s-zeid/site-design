@@ -29,6 +29,7 @@ module Jekyll
   
   def initialize(tag_name, url, tokens)
    super
+   @tag_name = tag_name
    @url = url.strip
   end
   
@@ -41,17 +42,23 @@ module Jekyll
     @url
    end
    
-   use_absolute_root = false
-   if context["site"]["use-absolute-root"]
-    case context["page"]["use-absolute-root"]
-    when false, 0
-     use_absolute_root = false
-    else
-     use_absolute_root = true
-    end
+   if @tag_name == "absroot" or @tag_name == "absrootfor"
+    use_absolute_root = true
+   elsif @tag_name == "relroot" or @tag_name == "relrootfor"
+    use_absolute_root = false
    else
-    if context["page"]["use-absolute-root"]
-     use_absolute_root = true
+    use_absolute_root = false
+    if context["site"]["use-absolute-root"]
+     case context["page"]["use-absolute-root"]
+     when false, 0
+      use_absolute_root = false
+     else
+      use_absolute_root = true
+     end
+    else
+     if context["page"]["use-absolute-root"]
+      use_absolute_root = true
+     end
     end
    end
    
@@ -90,6 +97,10 @@ end
 
 Liquid::Template.register_tag("root", Jekyll::RootTag)
 Liquid::Template.register_tag("rootfor", Jekyll::RootForTag)
+Liquid::Template.register_tag("absroot", Jekyll::RootTag)
+Liquid::Template.register_tag("absrootfor", Jekyll::RootForTag)
+Liquid::Template.register_tag("relroot", Jekyll::RootTag)
+Liquid::Template.register_tag("relrootfor", Jekyll::RootForTag)
 
 # old names
 Liquid::Template.register_tag("dotdot", Jekyll::RootTag)
