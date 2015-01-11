@@ -8,7 +8,7 @@ author:
 
 url:                 
 full-url:            http://john.doe.example
-default-scheme:      http    # only necessary with protocol-relative (full-)url
+default-scheme:      http    # only needed with protocol-relative {full-,}url
 ganalytics:          #UA-XXXXXX-Y    # Optional; uncomment to enable
 
 freecomment:    # Free/libre comment system <http://code.s.zeid.me/freecomment>
