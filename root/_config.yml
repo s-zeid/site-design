@@ -28,3 +28,4 @@ portal:         # Optional integration with <http://code.s.zeid.me/portal>
  url:                #//portal.john.doe.example/    # Uncomment to enable
  highlight:          john.doe.example
  theme:              new
+ max-icons:          16    # Controls the width of the portal's iframe (n*24px)

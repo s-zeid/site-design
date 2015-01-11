@@ -112,7 +112,7 @@
     <span id="portal-minibar" class="screen-only"
           style="float: right; height: 23px; margin-top: -.3em; padding-bottom: .3em;">
       <iframe src="{{ site.portal.url }}?minibar&amp;horizontal{% if site.portal.highlight %}&amp;highlight={{ site.portal.highlight }}{% endif %}{% if site.portal.theme %}&amp;theme={{ site.portal.theme }}{% endif %}"
-              style="width: 300px; height: 23px; border-style: none; overflow:hidden;">
+	      style="width: {{ site.portal.max-icons | times:24 }}px; height: 23px; border-style: none; overflow:hidden;">
       </iframe>
     </span>
    <!--<![endif]-->

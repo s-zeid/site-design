@@ -11,3 +11,6 @@ exclude:             [COPYING,COPYING.md,LICENSE,LICENSE.md,Makefile,README,READ
 
 stylus:
  path:               ./_template/_styles
+
+portal:
+ max-icons: 16
