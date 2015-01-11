@@ -3,6 +3,7 @@ copyright-start:     YYYY
 
 author:
  name:               John Doe
+ meta:               # if set, replaces author.name in <meta name="author" />
  url:                http://john.doe.example/
 
 url:                 
