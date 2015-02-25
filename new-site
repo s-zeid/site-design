@@ -58,6 +58,7 @@ fi
 
 mkdir -p "$dir"/_comments
 mkdir -p "$dir"/_drafts
+mkdir -p "$dir"/_includes
 mkdir -p "$dir"/_posts
 mkdir -p "$dir"/_postfiles
 mkdir -p "$dir"/_static
@@ -68,5 +69,14 @@ if [ -d "$dir"/_comments ]; then
  fi
  if [ ! -e "$dir"/_comments/freecomment.php ]; then
   cp -a "$tpl_dir"/root/_comments/freecomment.php "$dir"/_comments/freecomment.php
+ fi
+fi
+
+if [ -d "$dir"/_includes ]; then
+ if [ ! -e "$dir"/_includes/_template ]; then
+  (
+   cd "$dir"/_includes
+   ln -s ../_template/includes _template
+  )
  fi
 fi
