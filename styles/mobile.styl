@@ -31,7 +31,17 @@
   font-size: 14pt;
 
 @media handheld, tv, (max-width: 639px), (max-device-width: 639px)
+ body
+  background: $outer-background;
+ 
  body > header
+  &, & > nav > ul, & > h1 > span
+   right: 0; left: 0;
+   width: 100%; max-width: 100%;
+   margin-left: 0; margin-right: 0;
+  & > h1 > span
+   display: inline;
+  
   &, html.home &, html.level-0 &, html.no-h1 &,
      html.always-show-h1.home &, html.always-show-h1.level-0 &
    position: relative; top: auto;
@@ -47,6 +57,7 @@
  main
   display: block;
   background-image: none;
+  box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.2);
   > :first-child:before
    // undo the min-height hack used in the desktop <main> style (see screen.styl)
    height: 0;
@@ -166,5 +177,6 @@
     margin: 0;
     vertical-align: -0.16em;
  body > footer
+  margin-top: 0.625em;
   text-align: center;
   line-height: 1.25em;

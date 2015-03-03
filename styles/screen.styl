@@ -7,15 +7,23 @@
 body
  width: $width + $width-header-plus; max-width: 100%;
  margin: 0 auto;
- background: $outer-background;
+ if $sheet-metaphor
+  background: $outer-background;
+ else
+  background: $background;
  color: $outer-text;
 
 pre
  overflow-x: auto;
 
 body > header
- position: fixed; top: 0; right: auto; bottom: auto; left: auto;
- width: inherit; max-width: inherit;
+ position: fixed; top: 0; bottom: auto;
+ if $sheet-metaphor
+  right: auto; left: auto;
+  width: inherit; max-width: inherit;
+ else
+  right: 0; left: 0;
+  width: 100%; max-width: 100%;
  z-index: 9999;
  line-height: 2em;
  font-weight: bold;
@@ -116,6 +124,9 @@ body > header
   & > ul > li > ul
    min-width: 100%;
   & > ul
+   unless $sheet-metaphor
+    width: $width + $width-header-plus-nosheet;
+    margin-left: auto; margin-right: auto;
    &:after
     /* Fix ClearType text bug on Firefox/Windows */
     content: "\A0";
@@ -162,6 +173,11 @@ body > header
   background: $header-highlight;
   color: $header-highlight-text;
   text-shadow: 1px 1px $header-highlight-text-shadow;
+  > span
+   display: block;
+   unless $sheet-metaphor
+    width: $width + $width-header-plus-nosheet - 1em;
+    margin-left: auto; margin-right: auto;
   
   html.home &, html.level-0 &, html.no-h1
    height: 0.3em;
@@ -170,7 +186,8 @@ body > header
   &, html.always-show-h1.home &, html.always-show-h1.level-0 &
    height: 2em;
    overflow: auto;
-   padding: 0 0.5em;
+   > span
+    padding: 0 0.5em;
   
   img
    @extends body > header nav ul li > a img;
@@ -204,9 +221,12 @@ main
  width: $width;
  max-width: 100%;
  margin: 0 auto;
- background: $background-main;
+ if $sheet-metaphor
+  background: $background-main;
+  box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.2);
+ else
+  background: $background;
  color: $text;
- box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.2);
  text-shadow: none;
  overflow-x: auto;
  > :first-child:before
@@ -269,6 +289,9 @@ main
 body > footer
  margin: 0.625em 0.625em 0.125em;
  line-height: 1em;
- text-shadow: 1px 1px $outer-text-shadow;
+ if $sheet-metaphor
+  text-shadow: 1px 1px $outer-text-shadow;
+ else
+  margin-top: 1.25em;
 
 @import "mobile"

@@ -93,16 +93,18 @@
    </nav>
    {% endcapture %}
    {{ header_nav | strip_newlines | replace: "  ", "" | replace: " <", "<" }}
-   <h1 class="plain">{% unless home or page.h1 == false %}
-   {% if page.icon %} <img src="{{ page.icon }}" alt="" />{% endif %}
-   {% if page.h1 and page.h1 != true %}
-    {{ page.h1 }}
-   {% elsif page.title == null or page.title == "" %}
-    {% slug %}
-   {% else %}
-    {{ page.title }}
-   {% endif %}
-   {% endunless %}</h1>
+   <h1 class="plain">
+    <span>{% unless home or page.h1 == false %}
+    {% if page.icon %} <img src="{{ page.icon }}" alt="" />{% endif %}
+    {% if page.h1 and page.h1 != true %}
+     {{ page.h1 }}
+    {% elsif page.title == null or page.title == "" %}
+     {% slug %}
+    {% else %}
+     {{ page.title }}
+    {% endif %}
+    {% endunless %}</span>
+   </h1>
   </header>
   <main>
 {% endstrip %}{% indent 3 %}{{ content }}{% endindent %}{% strip %}  </main>
