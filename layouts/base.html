@@ -93,8 +93,8 @@
    </nav>
    {% endcapture %}
    {{ header_nav | strip_newlines | replace: "  ", "" | replace: " <", "<" }}
-   <h1 class="plain">
-    <span>{% unless home or page.h1 == false %}
+   <h1 class="plain">{% unless home or page.h1 == false %}
+    <span>
     {% if page.icon %} <img src="{{ page.icon }}" alt="" />{% endif %}
     {% if page.h1 and page.h1 != true %}
      {{ page.h1 }}
@@ -103,8 +103,8 @@
     {% else %}
      {{ page.title }}
     {% endif %}
-    {% endunless %}</span>
-   </h1>
+    </span>
+   {% endunless %}</h1>
   </header>
   <main>
 {% endstrip %}{% indent 3 %}{{ content }}{% endindent %}{% strip %}  </main>
