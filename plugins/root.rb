@@ -41,13 +41,21 @@ module Jekyll
    else
     @url
    end
-   "\0" + url + "\0"
+   mode = if @tag_name == "absroot"
+    "a"
+   elsif @tag_name == "relroot"
+    "r"
+   else
+    ""
+   end
+   options = mode
+   "\0#{url}\0#{options}\0"
   end
   
-  def self.get_root(context, url)
-   if @tag_name == "absroot" or @tag_name == "absrootfor"
+  def self.get_root(context, url="", mode="")
+   if mode.start_with? "a"
     use_absolute_root = true
-   elsif @tag_name == "relroot" or @tag_name == "relrootfor"
+   elsif mode.start_with? "r"
     use_absolute_root = false
    else
     use_absolute_root = false
@@ -92,8 +100,22 @@ module Jekyll
  class RootForTag < Liquid::Block
   include Liquid::StandardFilters
   
+  def initialize(tag_name, _, tokens)
+   super
+   @tag_name = tag_name
+  end
+  
   def render(context)
-   "\0" + super.strip + "\0"
+   url = super.strip
+   mode = if @tag_name == "absrootfor"
+    "a"
+   elsif @tag_name == "relrootfor"
+    "r"
+   else
+    ""
+   end
+   options = mode
+   "\0#{url}\0#{options}\0"
   end
  end
  
@@ -101,8 +123,10 @@ module Jekyll
   include Liquid::StandardFilters
   
   def render(context)
-   super.gsub(/\0[^\0]*\0/) { |match|
-    RootTag.get_root(context, match.gsub(/\0/, ""))
+   super.gsub(/\0[^\0]*\0[^\0]*\0/) { |match|
+    url, options = match[1..-2].split(/\0/, -1)
+    mode = options
+    RootTag.get_root(context, url, mode)
    }
   end
  end

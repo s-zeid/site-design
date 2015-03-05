@@ -47,7 +47,7 @@ module Jekyll
     url
    end
    
-   "\0\0" + url.gsub(/\/[^\/]*$/, "")
+   "\0\0\0" + url.gsub(/\/[^\/]*$/, "")
   end
  end
 end
