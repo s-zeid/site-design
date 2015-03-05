@@ -1,4 +1,4 @@
-# Copyright (C) 2012-2014 Scott Zeid
+# Copyright (C) 2012-2015 Scott Zeid
 # http://code.s.zeid.me/site-design
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -93,7 +93,7 @@ module Jekyll
   include Liquid::StandardFilters
   
   def render(context)
-   RootTag.get_relative_root(super.strip)
+   "\0" + super.strip + "\0"
   end
  end
  
