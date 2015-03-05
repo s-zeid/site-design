@@ -1,5 +1,5 @@
 {% if page.before-html %}{{ page.before-html }}{% endif %}<!DOCTYPE html>
-{% strip %}
+{% rootify %}{% strip %}
 {% if page.title == "Home" %}{% assign home = true %}{% endif %}
 <html class="level-{% sitenavlevel %}{% if home %} home{% endif %}{% if page.h1 %} always-show-h1{% endif %}{%if page.h1 == false %} no-h1{%endif%}" data-root="{% capture root_html_data %}{% root %}{% endcapture %}{{ root_html_data | xml_escape }}">
  <head>
@@ -146,5 +146,5 @@
   </script>
   {% endif %}
  </body>
-</html>{% endstrip %}{% if page.after-html %}{{ page.after-html }}{% endif %}{% comment %}
+</html>{% endstrip %}{% endrootify %}{% if page.after-html %}{{ page.after-html }}{% endif %}{% comment %}
 vim: set ft=liquid: {% endcomment %}

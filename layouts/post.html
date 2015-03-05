@@ -42,7 +42,7 @@ layout: blog
 {{ content }}{% if site.freecomment.enabled %}
 
 {% strip %}
-{% capture root %}{% root %}{% endcapture %}
+{% capture root %}{% rootify %}{% root %}{% endrootify %}{% endcapture %}
 <h2 id="comments">Comments</h2>
 <section id="freecomment"></section>
 <script type="text/javascript">

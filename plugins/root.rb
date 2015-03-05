@@ -41,7 +41,10 @@ module Jekyll
    else
     @url
    end
-   
+   "\0" + url + "\0"
+  end
+  
+  def self.get_root(context, url)
    if @tag_name == "absroot" or @tag_name == "absrootfor"
     use_absolute_root = true
    elsif @tag_name == "relroot" or @tag_name == "relrootfor"
@@ -93,6 +96,16 @@ module Jekyll
    RootTag.get_relative_root(super.strip)
   end
  end
+ 
+ class RootifyTag < Liquid::Block
+  include Liquid::StandardFilters
+  
+  def render(context)
+   super.gsub(/\0[^\0]*\0/) { |match|
+    RootTag.get_root(context, match.gsub(/\0/, ""))
+   }
+  end
+ end
 end
 
 Liquid::Template.register_tag("root", Jekyll::RootTag)
@@ -101,6 +114,7 @@ Liquid::Template.register_tag("absroot", Jekyll::RootTag)
 Liquid::Template.register_tag("absrootfor", Jekyll::RootForTag)
 Liquid::Template.register_tag("relroot", Jekyll::RootTag)
 Liquid::Template.register_tag("relrootfor", Jekyll::RootForTag)
+Liquid::Template.register_tag("rootify", Jekyll::RootifyTag)
 
 # old names
 Liquid::Template.register_tag("dotdot", Jekyll::RootTag)
