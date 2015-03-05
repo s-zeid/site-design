@@ -47,7 +47,7 @@ module Jekyll
     end
 
     def render(context)
-      File.join(context['page']['url'], @text)
+      "\0\0" + File.join(context['page']['url'], @text)
     end
   end
 end
