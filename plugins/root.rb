@@ -49,7 +49,7 @@ module Jekyll
     ""
    end
    options = mode
-   "\0#{url}\0#{options}\0"
+   "\x05#{url}\x05#{options}\x05"
   end
   
   def self.get_root(context, url="", mode="")
@@ -115,7 +115,7 @@ module Jekyll
     ""
    end
    options = mode
-   "\0#{url}\0#{options}\0"
+   "\x05#{url}\x05#{options}\x05"
   end
  end
  
@@ -123,8 +123,8 @@ module Jekyll
   include Liquid::StandardFilters
   
   def render(context)
-   super.gsub(/\0[^\0]*\0[^\0]*\0/) { |match|
-    url, options = match[1..-2].split(/\0/, -1)
+   super.gsub(/\x05[^\x05]*\x05[^\x05]*\x05/) { |match|
+    url, options = match[1..-2].split(/\x05/, -1)
     mode = options
     RootTag.get_root(context, url, mode)
    }
