@@ -6,7 +6,11 @@
 # Entries are of the format `<old-url> -> <new-url>`.  Lines
 # starting with a `#` are ignored as comments.  Lines may be
 # broken before and/or after the arrow.  You may also use an
-# equals sign instead of a hyphen.
+# equals sign instead of a hyphen.  If the old URL ends with
+# `/*`, then it will be treated as a wildcard:  the old URL
+# followed by either a slash and extra parts or by nothing
+# will be matched, and only the part of the old URL before
+# the slash and asterisk will be replaced.
 #
 # This file is read by `_static/redirect.php`.  To use it, tell
 # your server to use that PHP script as the 404 handler.  The
