@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # This file is executed after the site is generated, but before it is
 # deployed (moved from ._build/ to _site/).  If you need anything to
