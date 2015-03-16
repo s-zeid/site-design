@@ -126,7 +126,11 @@ module Jekyll
    super.gsub(/\x05[^\x05]*\x05[^\x05]*\x05/) { |match|
     url, options = match[1..-2].split(/\x05/, -1)
     mode = options
-    RootTag.get_root(context, url, mode)
+    if mode != "5"
+     RootTag.get_root(context, url, mode)
+    else
+     "\x05"
+    end
    }
   end
  end
