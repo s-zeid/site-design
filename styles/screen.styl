@@ -4,7 +4,13 @@
 /* This stylesheet is automatically generated using Stylus.  See the
    original source at <http://code.s.zeid.me/site-design/src/master/styles/screen.styl>. */
 
+html, body
+ height: 100%;
+
 body
+ unless $sheet-metaphor
+  display: flex;
+  flex-direction: column;
  width: $width + $width-header-plus; max-width: 100%;
  margin: 0 auto;
  if $sheet-metaphor
@@ -24,6 +30,7 @@ body > header
  else
   right: 0; left: 0;
   width: 100%; max-width: 100%;
+  flex: 0 0 auto;
  z-index: 9999;
  line-height: 2em;
  font-weight: bold;
@@ -224,6 +231,8 @@ main
  background: $background-main;
  if $sheet-metaphor
   box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.2);
+ else
+  flex: 0 0 auto;
  color: $text;
  text-shadow: none;
  overflow-x: auto;
@@ -283,6 +292,10 @@ main
     padding-left: 0;
    + nav
     margin-top: 1em;
+
+unless $sheet-metaphor
+ body > main + wbr
+  flex: 1 0 0%;
 
 body > footer
  margin: 0.625em 0.625em 0.125em;
