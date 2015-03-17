@@ -293,12 +293,18 @@ main
    + nav
     margin-top: 1em;
 
-body > main + wbr
+body > main + hr
  if $sheet-metaphor
   display: none;
  else
   display: block;
   flex: 1 0 0%;
+  border-style: none;
+  height: 0;
+  margin: 0;
+  &:before, &:after
+   content: "";
+   display: none;
 
 body > footer
  margin: 0.625em 0.625em 0.125em;

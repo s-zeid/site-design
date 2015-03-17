@@ -1,13 +1,31 @@
 roundn(num, precision)
  return (round(num * (10 ** precision)) / (10 ** precision));
 
+// Vendor prefix shit
+
+display(x)
+ if x == flex
+  display: -webkit-flex;
+  display: flex;
+ else
+  display: arguments;
+
+flex()
+ -ms-flex: arguments;
+ -webkit-flex: arguments;
+ flex: arguments;
+
+flex-direction()
+ -ms-flex-direction: arguments;
+ -webkit-flex-direction: arguments;
+ flex-direction: arguments;
+
 transform()
  transform: arguments;
  -moz-transform: arguments;
  -ms-transform: arguments;
  -o-transform: arguments;
  -webkit-transform: arguments;
- -vendor-prefixes-are-stupid-transform: arguments;
 
 transition()
  transition: arguments;
@@ -15,4 +33,3 @@ transition()
  -ms-transition: arguments;
  -o-transition: arguments;
  -webkit-transition: arguments;
- -vendor-prefixes-are-stupid-transition: arguments;
