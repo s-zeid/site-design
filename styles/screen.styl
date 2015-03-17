@@ -293,8 +293,11 @@ main
    + nav
     margin-top: 1em;
 
-unless $sheet-metaphor
- body > main + wbr
+body > main + wbr
+ if $sheet-metaphor
+  display: none;
+ else
+  display: block;
   flex: 1 0 0%;
 
 body > footer
