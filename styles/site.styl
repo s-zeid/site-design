@@ -40,3 +40,16 @@ main
      &:not(:last-child) > p
       > span
        padding-bottom: 0.5em;
+
+body > main + hr
+ if $sheet-metaphor
+  display: none;
+ else
+  display: block;
+  flex: 1 0 0%;
+  border-style: none;
+  height: 0;
+  margin: 0;
+  &:before, &:after
+   content: "";
+   display: none;
