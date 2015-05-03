@@ -2,7 +2,9 @@
 layout: site
 ---
 
-{% strip %}{% if page.contents %}<aside>
+{% strip %}
+{% if page.contents %}
+<aside>
  <nav>
   <h2>Contents</h2>
   <ul>
@@ -12,45 +14,49 @@ layout: site
   </ul>
  </nav>
 </aside>
-{% endif %}{% comment %}<section class="liquid-render-error" style="color: #800;">
+{% endif %}
+{% comment %}<section class="liquid-render-error" style="color: #800;">
  <p style="font-size: 2em; font-weight: bold; margin: 0;">
   This site is having some technical issues at the moment.
  </p>
  <p style="font-size: 1.25em;">
   Until it is fixed, you can still read the contents of this page below.
  </p>
-</section>{% endcomment %}{% capture content_not_blank %}{{ content | strip_newlines | size | replace: '0','' }}{% endcapture %}{% comment %}
-{% endcomment %}<article>{% endstrip %}
-{% indent 1 %}{% if content_not_blank != "" %}{{ content }}
-{% endif %}{% strip %}<nav class="subpage">
- {% sitenav page.url %}{% raw %}
- <ul>
- {% for p in nav.pages %}
-  {% capture li %}
-  <li class="{%if p.nav.current%} current{%elsif p.nav.parent%} parent{%endif%}{%if p.title == "Home"%} home{%endif%}{%if p.nav.has_children%} has-children{%endif%}">
-  {% endcapture %}
-  {{ li | replace: 'class=" ', 'class="' | replace: ' class=""', "" }}
-   {% capture a %}<a href="{%if p.nav.url%}{{p.nav.url|uri_escape}}{%else%}{%root%}{{p.nav.slug|uri_escape}}{%endif%}"{%if p.nav.target%} target="{{p.nav.target|xml_escape}}"{%endif%}>{% endcapture %}{% comment %}</a>{% endcomment %}
-   <span>
-    {{ a }}{% if p.icon %}<img src="{% root %}{% if p.nav.dir != "/" %}{{ p.nav.dir | uri_escape }}{% endif %}/{{ p.icon | uri_escape }}" alt="" class="left" />{% endif %}</a>
-   {% if p.subpage-text %}
-    <span>{{ a }}{{p.subpage-text}}</a></span>
-   {% elsif p.title != "Home" %}
-    <span>{{ a }}{{p.nav.title}}</a></span>
-   {% else %}
-    <span>{{ a }}{{site.name}}</a></span>
-   {% endif %}
-   </span>
-   <p>
-    <span></span>
-    <span>{% if p.description %}{{ p.description | xml_escape | gsub:'\n$','' }}{% endif %}</span>
-   </p>
-  </li>
- {% endfor %}
- </ul>
- {% endraw %}{% endsitenav %}
-</nav>{% endstrip %}{% endindent %}
-</article>{% strip %}{% capture aside %}<aside>
+</section>{% endcomment %}
+<article>
+ {% endstrip %}
+{% indent 1 %}{% lrstrip %}{{ content }}{% endlrstrip %}{% endindent %}
+ {% strip %}
+ <nav class="subpage">
+  {% sitenav page.url %}{% raw %}
+  <ul>
+  {% for p in nav.pages %}
+   {% capture li %}
+   <li class="{%if p.nav.current%} current{%elsif p.nav.parent%} parent{%endif%}{%if p.title == "Home"%} home{%endif%}{%if p.nav.has_children%} has-children{%endif%}">
+   {% endcapture %}
+   {{ li | replace: 'class=" ', 'class="' | replace: ' class=""', "" }}
+    {% capture a %}<a href="{%if p.nav.url%}{{p.nav.url|uri_escape}}{%else%}{%root%}{{p.nav.slug|uri_escape}}{%endif%}"{%if p.nav.target%} target="{{p.nav.target|xml_escape}}"{%endif%}>{% endcapture %}{% comment %}</a>{% endcomment %}
+    <span>
+     {{ a }}{% if p.icon %}<img src="{% root %}{% if p.nav.dir != "/" %}{{ p.nav.dir | uri_escape }}{% endif %}/{{ p.icon | uri_escape }}" alt="" class="left" />{% endif %}</a>
+    {% if p.subpage-text %}
+     <span>{{ a }}{{p.subpage-text}}</a></span>
+    {% elsif p.title != "Home" %}
+     <span>{{ a }}{{p.nav.title}}</a></span>
+    {% else %}
+     <span>{{ a }}{{site.name}}</a></span>
+    {% endif %}
+    </span>
+    <p>
+     <span></span>
+     <span>{% if p.description %}{{ p.description | xml_escape | gsub:'\n$','' }}{% endif %}</span>
+    </p>
+   </li>
+  {% endfor %}
+  </ul>
+  {% endraw %}{% endsitenav %}
+ </nav>
+</article>
+{% capture aside %}<aside>
  {% if page.contents %}
  <nav class="screen-only">
   <h2>Contents</h2>
@@ -80,5 +86,6 @@ layout: site
  {% endcapture %}
  {{ non_contents }}
 </aside>
-{% endcapture %}{% endstrip %}{% capture aside %}
+{% endcapture %}
+{% endstrip %}{% capture aside %}
 {{ aside | strip_newlines | replace: "  ", "" | replace: " <", "<" }}{% comment %}">{% endcomment %}{% endcapture %}{% if aside contains "<li>" %}{% if non_contents contains "<nav>" or non_contents contains "<section>" %}{{ aside }}{% else %}{{ aside | replace_first: "<aside>",'<aside class="contents-only">' }}{% endif %}{% endif %}

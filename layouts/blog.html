@@ -3,8 +3,10 @@ layout: site
 ---
 
 <article>
-{% indent 1 %}{{ content }}{% endindent %}</article>
-{% strip %}<aside>
+{% indent 1 %}{% lrstrip %}{{ content }}{% endlrstrip %}{% endindent %}
+{% strip %}
+</article>
+<aside>
  <nav>
   <h2>Recent Posts</h2>
   <ul>

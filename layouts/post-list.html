@@ -2,7 +2,7 @@
 layout: blog
 ---
 
-{% if content and content != "" %}{{ content }}
+{% if content and content != "" %}{% lrstrip %}{{ content }}{% endlrstrip %}
 {% endif %}{% for p in site.posts %}{% if p.tags contains page.tag or p.categories contains page.category or (page.tag == null and page.category == null) %}{% strip %}<article>
  <header>
   <h2><a href="{% root %}{{ p.url }}">{{ p.title }}</a></h2>
@@ -41,6 +41,7 @@ layout: blog
   </section>
 {% endif %}
  </header>
- 
-{% endstrip %}{% indent 1 %}{{ p.content }}{% endindent %}
-</article>{% endif %}{% endfor %}
+{% endstrip %}
+{% indent 1 %}{% lrstrip %}{{ p.content }}{% endlrstrip %}{% endindent %}
+</article>
+{% endif %}{% endfor %}

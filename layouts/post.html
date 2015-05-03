@@ -2,7 +2,8 @@
 layout: blog
 ---
 
-{% strip %}<header>
+{% strip %}
+<header>
  <section class="date">
   Posted on
   <time datetime="{{ page.date | date: "%Y-%m-%dT%H:%M:%S" }}">
@@ -37,11 +38,11 @@ layout: blog
 {{ tag_list | gsub:',\n$','' }}
  </section>
 {% endif %}
-</header>{% endstrip %}
-
-{{ content }}{% if site.freecomment.enabled %}
-
+</header>
+{% endstrip %}
+{% lrstrip %}{{ content }}{% endlrstrip %}
 {% strip %}
+{% if site.freecomment.enabled %}
 {% capture root %}{% rootify %}{% root %}{% endrootify %}{% endcapture %}
 <h2 id="comments">Comments</h2>
 <section id="freecomment"></section>
@@ -61,4 +62,5 @@ layout: blog
              }
             ).load("freecomment");
 </script>
-{% endstrip %}{% endif %}
+{% endif %}
+{% endstrip %}

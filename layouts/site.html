@@ -3,7 +3,8 @@ layout: base
 __sublayout__: site
 ---
 
-{% strip %}<header>
+{% strip %}
+<header>
  {% capture header_nav %}
  <nav>
   {% sitenav %}{% raw %}
@@ -46,7 +47,10 @@ __sublayout__: site
  {% endunless %}</h1>
 </header>
 <main>
-{% endstrip %}{% indent 1 %}{{ content }}{% endindent %}{% strip %}</main>
+{% endstrip %}
+{% indent 1 %}{% lrstrip %}{{ content }}{% endlrstrip %}{% endindent %}
+{% strip %}
+</main>
 <hr />
 <footer>
  {% if site.portal.url %}
@@ -72,4 +76,5 @@ __sublayout__: site
   <a href="http://jigsaw.w3.org/css-validator/check/referer?vextwarning=true">
    CSS 3</a>.&nbsp;
  </aside-->
-</footer>{% endstrip %}
+</footer>
+{% endstrip %}

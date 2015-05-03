@@ -3,7 +3,8 @@ layout: base
 __sublayout__: basic
 ---
 
-{% strip %}<header>{% unless home or page.h1 == false %}
+{% strip %}
+<header>{% unless home or page.h1 == false %}
  <h1 style="font-size: 1em;">
   {% if page.h1 and page.h1 != true %}
    {{ page.h1 }}
@@ -27,11 +28,15 @@ __sublayout__: basic
 </header>
 <main>
  <article>
-{% endstrip %}{% indent 2 %}{{ content }}{% endindent %}{% strip %} </article>
+ {% endstrip %}
+{% indent 2 %}{% lrstrip %}{{ content }}{% endlrstrip %}{% endindent %}
+ {% strip %}
+ </article>
 </main>
 <footer>
  &copy; {% copyright_year %} {{ site.author.name }}.{% if site.author.name != "Scott Zeid" %}&nbsp; 
  <a href="http://code.s.zeid.me/site-design" target="_blank">Design</a> by
  <a href="http://s.zeid.me/" target="_blank">Scott Zeid</a>.
  {% endif %}
-</footer>{% endstrip %}
+</footer>
+{% endstrip %}
