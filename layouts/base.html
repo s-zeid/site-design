@@ -6,17 +6,17 @@
  <head>
   <meta charset="utf-8" />
   {% if page.html-title and home == null %}
-  <title>{% if page.raw-html-title %}{{ page.html-title }}{% else %}{{ page.html-title|strip_html }}{% endif %} &middot; {{ site.name | strip_html }}</title>
+  <title>{% if page.raw-html-title %}{{ page.html-title }}{% else %}{{ page.html-title|strip_html|strip_newlines }}{% endif %} &middot; {{ site.name | strip_html | strip_newlines }}</title>
   {% elsif page.title and home == null %}
-  <title>{% if page.raw-html-title %}{{ page.title }}{% else %}{{ page.title|strip_html }}{% endif %} &middot; {{ site.name | strip_html }}</title>
+  <title>{% if page.raw-html-title %}{{ page.title }}{% else %}{{ page.title|strip_html|strip_newlines }}{% endif %} &middot; {{ site.name | strip_html | strip_newlines }}</title>
   {% else %}
-  <title>{{ site.name | strip_html }}</title>
+  <title>{{ site.name | strip_html | strip_newlines }}</title>
   {% endif %}
-  <meta name="author" content="{% if site.author.meta %}{{ site.author.meta }}{% else %}{{ site.author.name }}{% endif %}" />
+  <meta name="author" content="{% if site.author.meta %}{{ site.author.meta | strip_newlines }}{% else %}{{ site.author.name | strip_newlines }}{% endif %}" />
   {% if home != null and site.description != null %}
-  <meta name="description" content="{{ site.description | markdownify | strip_html | xml_escape }}" />
+  <meta name="description" content="{{ site.description | markdownify | strip_html | strip_newlines | xml_escape }}" />
   {% elsif page.description != null %}
-  <meta name="description" content="{{ page.description | markdownify | strip_html | xml_escape }}" />
+  <meta name="description" content="{{ page.description | markdownify | strip_html | strip_newlines | xml_escape }}" />
   {% endif %}
   <meta name="generator" content="Jekyll" />
   <meta name="viewport" content="width=device-width; minimum-scale=1.0; initial-scale=1.0" />
