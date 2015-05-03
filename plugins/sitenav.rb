@@ -149,6 +149,13 @@ module Jekyll
     next if not slug_no_end_slash.start_with?(parent + "/")
     previous = slug_no_end_slash
     original_nav = (page["nav"].nil?) ? {} : page["nav"]
+    title = if not original_nav["title"].nil?
+     original_nav["title"]
+    elsif not page["title"].nil?
+     page["title"]
+    else
+     slug
+    end
     @@child_list[slug] = children = self.make_tree(site, slug_no_end_slash)
     page = Jekyll::Utils::deep_merge_hashes(page, {"nav" => {
      "current"  => lambda {|ctx|
@@ -160,7 +167,7 @@ module Jekyll
       ctx["page"]["url"].start_with?(slug_no_end_slash+"/")
      },
      "slug"     => slug,
-     "title"    => (not page["title"].nil?) ? page["title"] : slug,
+     "title"    => title,
      "dir"      => File.dirname(page["url"]),
      "original" => original_nav,
      "children" => children,
