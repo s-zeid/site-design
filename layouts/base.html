@@ -44,12 +44,6 @@
   <link rel="stylesheet" type="text/css" href="{% root %}/styles/basic.css" />
   {% endif %}
   <link rel="stylesheet" type="text/css" href="{% root %}/lightbox/css/lightbox.css" />
-  {% endstrip %}{% if page.stylus or page.css %}
-  <style type="text/css"> /* Page-specific styles */
-{% indent 3 %}{% if page.stylus %}/* Compiled Stylus code */
-{% stylus %}{{ page.stylus }}{% endstylus %}{% endif %}{% if page.css %}/* Plain CSS */
-{{ page.css }}{% endif %}{% endindent %}  </style>{% endif %}
-  {% strip %}
   <script type="text/javascript" src="{% root %}/html5shiv.js"></script>
   <script type="text/javascript" src="{% root %}/html5shiv-printshiv.js"></script>
   <script type="text/javascript" src="{% root %}/jquery.min.js"></script>
@@ -71,8 +65,16 @@
    })();
   </script>
   {% endif %}
- {% endstrip %}{% if page.head %}
-{% indent 2 %}{% lrstrip %}{{ page.head }}{% endlrstrip %}{% endindent %}{% endif %}
+ {% endstrip %}{% if page.head or page.stylus or page.css %}
+{% indent 2 %}{% lrstrip %}
+{% lrstrip %}{{ page.head }}{% endlrstrip %}
+{% if page.stylus or page.css %}{% lrstrip %}
+<style type="text/css"> /* Page-specific styles */
+{% indent 1 %}{% if page.stylus %}/* Compiled Stylus code */
+{% stylus %}{{ page.stylus }}{% endstylus %}{% endif %}{% if page.css %}/* Plain CSS */
+{{ page.css }}{% endif %}{% endindent %}</style>{% endlrstrip %}
+{% endif %}
+{% endlrstrip %}{% endindent %}{% endif %}
  {% strip %}
  </head>
  <body>
