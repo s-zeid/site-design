@@ -38,12 +38,13 @@ layout: site
  </nav>
  {% endif %}
  {% capture non_contents %}
+ {% assign root_listing = false %}
  {% capture subpages_nav %}
  <nav>
   <h2>Subpages</h2>
   {% sitenav page.url %}{% raw %}
    <ul>
-   {% for p in nav.pages %}
+   {% for p in nav.pages %}{% if p.url != page.url %}
     {% capture li %}
     <li class="{%if p.nav.current%}current{%elsif p.nav.parent%}parent{%endif%}{%if p.title == "Home"%} home{%endif%}{%if p.nav.has_children%} has-children{%endif%}">
     {% endcapture %}
@@ -58,12 +59,12 @@ layout: site
      {% endif %}
      </a>
     </li>
-   {% endfor %}
+   {% else %}{% assign root_listing = true %}{% endif %}{% endfor %}
    </ul>
   {% endraw %}{% endsitenav %}
  </nav>
  {% endcapture %}
- {% if subpages_nav contains "<li>" or subpages_nav contains "Liquid error:" %}{{ subpages_nav }}{% endif %}
+ {% unless root_listing %}{% if subpages_nav contains "<li>" or subpages_nav contains "Liquid error:" %}{{ subpages_nav }}{% endif %}{% endunless %}
  {% if page.title == "Home" %}
  <nav>
   <h2>Recent Posts</h2>
