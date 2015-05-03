@@ -82,10 +82,9 @@
  {% strip %}
  </head>
  <body>
-  {% endstrip %}
+ {% endstrip %}
 {% indent 2 %}{% lrstrip %}{{ content }}{% endlrstrip %}{% endindent %}
-  {% strip %}
-  {% if site.internet-defense-league.enabled %}
+ {% if site.internet-defense-league.enabled %} {% strip %}
   <script type="text/javascript">
    window._idl = {{ site.internet-defense-league | jsonify }};
    (function() {
@@ -96,7 +95,8 @@
     document.getElementsByTagName('body')[0].appendChild(idl);
    })();
   </script>
-  {% endif %}
+ {% endstrip %}
+ {% endif %}{% strip %}
  </body>
 </html>
 {% endstrip %}{% endrootify %}{% strip %}
