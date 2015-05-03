@@ -4,6 +4,7 @@ __sublayout__: site
 ---
 
 {% strip %}
+{% if page.title == "Home" %}{% assign home = true %}{% endif %}
 <header>
  {% capture header_nav %}
  <nav>
