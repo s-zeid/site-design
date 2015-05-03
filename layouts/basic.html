@@ -4,8 +4,9 @@ __sublayout__: basic
 ---
 
 {% strip %}
-<header>{% unless home or page.h1 == false %}
- <h1 style="font-size: 1em;">
+<header>
+ {% unless home or page.h1 == false %}
+ <h1>
  {% if page.h1 and page.h1 != true %}
   {{ page.h1 }}
  {% elsif page.title == null or page.title == "" %}
