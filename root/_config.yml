@@ -30,3 +30,7 @@ portal:         # Optional integration with <http://code.s.zeid.me/portal>
  highlight:          john.doe.example
  theme:              new
  max-icons:          16    # Controls the width of the portal's iframe (n*24px)
+
+#head: |
+# <!-- content to place in the <head> section of each page -->
+# <!-- (uncomment the YAML block to enable) -->

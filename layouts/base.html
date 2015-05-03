@@ -65,8 +65,9 @@
    })();
   </script>
   {% endif %}
- {% endstrip %}{% if page.head or page.stylus or page.css %}
+ {% endstrip %}{% if site.head or page.head or page.stylus or page.css %}
 {% indent 2 %}{% lrstrip %}
+{% lrstrip %}{{ site.head }}{% endlrstrip %}
 {% lrstrip %}{{ page.head }}{% endlrstrip %}
 {% if page.stylus or page.css %}{% lrstrip %}
 <style type="text/css"> /* Page-specific styles */
