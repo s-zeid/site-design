@@ -64,7 +64,7 @@ layout: site
   {% endraw %}{% endsitenav %}
  </nav>
  {% endcapture %}
- {% unless root_listing %}{% if subpages_nav contains "<li>" or subpages_nav contains "Liquid error:" %}{{ subpages_nav }}{% endif %}{% endunless %}
+ {% unless root_listing %}{% if subpages_nav contains "</li>" or subpages_nav contains "Liquid error:" %}{{ subpages_nav }}{% endif %}{% endunless %}
  {% if page.title == "Home" %}
  <nav>
   <h2>Recent Posts</h2>
@@ -85,4 +85,4 @@ layout: site
 </aside>
 {% endcapture %}
 {% endstrip %}{% capture aside %}
-{{ aside | strip_newlines | replace: "  ", "" | replace: " <", "<" }}{% comment %}">{% endcomment %}{% endcapture %}{% if aside contains "<li>" %}{% if non_contents contains "<nav>" or non_contents contains "<section>" %}{{ aside }}{% else %}{{ aside | replace_first: "<aside>",'<aside class="contents-only">' }}{% endif %}{% endif %}
+{{ aside | strip_newlines | replace: "  ", "" | replace: " <", "<" }}{% comment %}">{% endcomment %}{% endcapture %}{% if aside contains "</li>" %}{% if non_contents contains "<nav>" or non_contents contains "<section>" %}{{ aside }}{% else %}{{ aside | replace_first: "<aside>",'<aside class="contents-only">' }}{% endif %}{% endif %}
