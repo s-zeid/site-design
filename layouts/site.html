@@ -63,6 +63,7 @@ __sublayout__: site
   </span>
  <!--<![endif]-->
  {% endif %}
+ {% if page.show-copyright != false %}
  <aside>
   <a href="https://youtu.be/DRm5WcjOikQ#t=1m46s" class="darker"
      title="You've got a nice Web site here.  We wouldn't want anything to *happen* to it....">&copy;</a>
@@ -71,6 +72,7 @@ __sublayout__: site
   <a href="http://s.zeid.me/" target="_blank">Scott Zeid</a>.
   {% endif %}
  </aside>
+ {% endif %}
  <!--aside> (commented out until the CSS validator adds transform: support)
   <a href="http://validator.w3.org/check?uri=referer">Valid HTML 5</a> and
   <a href="http://jigsaw.w3.org/css-validator/check/referer?vextwarning=true">

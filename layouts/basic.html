@@ -34,9 +34,11 @@ __sublayout__: basic
  </article>
 </main>
 <footer>
+ {% if page.show-copyright != false %}
  &copy; {% copyright_year %} {{ site.author.name }}.{% if site.author.name != "Scott Zeid" %}&nbsp; 
  <a href="http://code.s.zeid.me/site-design" target="_blank">Design</a> by
  <a href="http://s.zeid.me/" target="_blank">Scott Zeid</a>.
+ {% endif %}
  {% endif %}
 </footer>
 {% endstrip %}
