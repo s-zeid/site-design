@@ -59,9 +59,7 @@
   <script type="text/javascript" src="{% root %}/freecomment.js"></script>
   <script type="text/javascript" src="{% root %}/markdown.min.js"></script>
   {% endif %}
-  {% endstrip %}{% if page.head %}
-{% indent 2 %}{% lrstrip %}{{ page.head }}{% endlrstrip %}{% endindent %}{% endif %}
- {% if site.ganalytics %} {% strip %}
+  {% if site.ganalytics %}
   <script type="text/javascript">
    var _gaq = _gaq || [];
    _gaq.push(['_setAccount', '{{ site.ganalytics }}']);
@@ -72,8 +70,10 @@
      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
    })();
   </script>
-  {% endstrip %}
- {% endif %}{% strip %}
+  {% endif %}
+ {% endstrip %}{% if page.head %}
+{% indent 2 %}{% lrstrip %}{{ page.head }}{% endlrstrip %}{% endindent %}{% endif %}
+ {% strip %}
  </head>
  <body>
   {% endstrip %}
