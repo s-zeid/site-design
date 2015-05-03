@@ -64,77 +64,8 @@
   </script>
 {% endif %} </head>
  <body>
-  <header>
-   {% capture header_nav %}
-   <nav>
-    {% sitenav %}{% raw %}
-    <ul>
-    {% for p in nav.pages %}
-     {% capture li %}
-     <li class="{%if p.nav.current%} current{%elsif p.nav.parent%} parent{%endif%}{%if p.title == "Home"%} home{%endif%}{%if p.nav.has_children%} has-children{%endif%}">
-     {% endcapture %}
-     {{ li | replace: 'class=" ', 'class="' | replace: ' class=""', "" }}
-     <a href="{%if p.nav.url%}{{p.nav.url|uri_escape}}{%else%}{%root%}{{p.nav.slug|uri_escape}}{%endif%}"{%if p.nav.tooltip%} title="{{p.nav.tooltip|xml_escape}}"{%elsif p.description%} title="{{p.description|xml_escape}}"{%endif%}{%if p.nav.target%} target="{{p.nav.target|xml_escape}}"{%endif%}>
-       <span>{% if p.icon %}<img src="{% root %}{% if p.nav.dir != "/" %}{{ p.nav.dir | uri_escape}}{% endif %}/{{ p.icon | uri_escape }}" alt="" class="left" />{% endif %}</span>
-      {% if p.menu-text %}
-       <span>{{p.menu-text}}</span>
-      {% elsif p.title != "Home" %}
-       <span>{{p.nav.title}}</span>
-      {% else %}
-       <span>{{site.name}}</span>
-      {% endif %}
-      </a>
-     {% capture level %}{{ nav.level | plus: 2 | minus: nav.level }}{% endcapture %}
-     {% indent level %}{{p.nav.children}}{% endindent %}
-     </li>
-    {% endfor %}
-    </ul>
-    {% endraw %}{% endsitenav %}
-   </nav>
-   {% endcapture %}
-   {{ header_nav | strip_newlines | replace: "  ", "" | replace: " <", "<" }}
-   <h1 class="plain">{% unless home or page.h1 == false %}
-    <span>
-    {% if page.icon %} <img src="{{ page.icon }}" alt="" />{% endif %}
-    {% if page.h1 and page.h1 != true %}
-     {{ page.h1 }}
-    {% elsif page.title == null or page.title == "" %}
-     {% slug %}
-    {% else %}
-     {{ page.title }}
-    {% endif %}
-    </span>
-   {% endunless %}</h1>
-  </header>
-  <main>
-{% endstrip %}{% indent 3 %}{{ content }}{% endindent %}{% strip %}  </main>
-  <hr />
-  <footer>
-   {% if site.portal.url %}
-   <!--[if (!IE)|(gte IE 9)]><!-->
-    <span id="portal-minibar" class="screen-only"
-          style="float: right; height: 23px; margin-top: -.3em; padding-bottom: .3em;">
-      <iframe src="{{ site.portal.url }}?minibar&amp;horizontal{% if site.portal.highlight %}&amp;highlight={{ site.portal.highlight }}{% endif %}{% if site.portal.theme %}&amp;theme={{ site.portal.theme }}{% endif %}"
-	      style="width: {{ site.portal.max-icons | times:24 }}px; height: 23px; border-style: none; overflow:hidden;">
-      </iframe>
-    </span>
-   <!--<![endif]-->
-   {% endif %}
-   <aside>
-    <a href="https://youtu.be/DRm5WcjOikQ#t=1m46s" class="darker"
-       title="You've got a nice Web site here.  We wouldn't want anything to *happen* to it....">&copy;</a>
-    {% copyright_year %} {{ site.author.name }}.{% if site.author.name != "Scott Zeid" %}&nbsp; 
-    <a href="http://code.s.zeid.me/site-design" target="_blank">Design</a> by
-    <a href="http://s.zeid.me/" target="_blank">Scott Zeid</a>.
-    {% endif %}
-   </aside>
-   <!--aside> (commented out until the CSS validator adds transform: support)
-    <a href="http://validator.w3.org/check?uri=referer">Valid HTML 5</a> and
-    <a href="http://jigsaw.w3.org/css-validator/check/referer?vextwarning=true">
-     CSS 3</a>.&nbsp;
-   </aside-->
-  </footer>
-  {% if site.internet-defense-league.enabled %}
+{% endstrip %}{% indent 2 %}{{ content }}{% endindent %}{% strip %}{% comment %}
+  {% endcomment %}{% if site.internet-defense-league.enabled %}
   <script type="text/javascript">
    window._idl = {{ site.internet-defense-league | jsonify }};
    (function() {
