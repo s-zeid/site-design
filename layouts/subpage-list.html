@@ -30,7 +30,7 @@ layout: site
  <nav class="subpage">
   {% sitenav page.url %}{% raw %}
   <ul>
-  {% for p in nav.pages %}
+   {% for p in nav.pages %}{% if p.url != page.url %}
    {% capture li %}
    <li class="{%if p.nav.current%} current{%elsif p.nav.parent%} parent{%endif%}{%if p.title == "Home"%} home{%endif%}{%if p.nav.has_children%} has-children{%endif%}">
    {% endcapture %}
@@ -51,7 +51,7 @@ layout: site
      <span>{% if p.description %}{{ p.description | xml_escape | gsub:'\n$','' }}{% endif %}</span>
     </p>
    </li>
-  {% endfor %}
+  {% endif %}{% endfor %}
   </ul>
   {% endraw %}{% endsitenav %}
  </nav>
