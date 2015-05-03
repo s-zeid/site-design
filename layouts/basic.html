@@ -1,0 +1,37 @@
+---
+layout: base
+__sublayout__: basic
+---
+
+{% strip %}<header>{% unless home or page.h1 == false %}
+ <h1 style="font-size: 1em;">
+  {% if page.h1 and page.h1 != true %}
+   {{ page.h1 }}
+  {% elsif page.title == null or page.title == "" %}
+   {% slug %}
+  {% else %}
+   {{ page.title }}
+  {% endif %}
+ </h1>
+ {% endunless %}
+ {% if page.contents %}
+ <nav>
+  <ul>
+   {% for i in page.contents %}
+   <li><a href="#{{ i[1] }}">{{ i[0] }}</a></li>
+   {% endfor %}
+  </ul>
+ </nav>
+ <hr />
+ {% endif %}
+</header>
+<main>
+ <article>
+{% endstrip %}{% indent 2 %}{{ content }}{% endindent %}{% strip %} </article>
+</main>
+<footer>
+ &copy; {% copyright_year %} {{ site.author.name }}.{% if site.author.name != "Scott Zeid" %}&nbsp; 
+ <a href="http://code.s.zeid.me/site-design" target="_blank">Design</a> by
+ <a href="http://s.zeid.me/" target="_blank">Scott Zeid</a>.
+ {% endif %}
+</footer>{% endstrip %}
