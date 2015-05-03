@@ -74,6 +74,7 @@ module Jekyll
     @parent
    end
    parent = (not parent.empty?) ? self.class.to_slug(parent) : ""
+   parent = (parent != "/") ? parent : ""
    generate_output(self.class.tree(context.registers[:site], parent), context, super)
   end
   
