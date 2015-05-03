@@ -10,8 +10,10 @@
   <title>{% if page.raw-html-title %}{{ page.html-title }}{% else %}{{ page.html-title|strip_html|strip_newlines }}{% endif %}{% if title_suffix != "" %} &middot; {{ title_suffix }}{% endif %}</title>
   {% elsif page.title and home == null %}
   <title>{% if page.raw-html-title %}{{ page.title }}{% else %}{{ page.title|strip_html|strip_newlines }}{% endif %}{% if title_suffix != "" %} &middot; {{ title_suffix }}{% endif %}</title>
-  {% else %}
+  {% elsif page.__sublayout__ == "site" %}
   <title>{{ title_suffix }}</title>
+  {% else %}
+  <title>{% if page.raw-html-title %}{{ page.title }}{% else %}{{ page.title|strip_html|strip_newlines }}{% endif %}</title>
   {% endif %}
   <meta name="author" content="{% if site.author.meta %}{{ site.author.meta | strip_newlines }}{% else %}{{ site.author.name | strip_newlines }}{% endif %}" />
   {% if home != null and site.description != null %}
