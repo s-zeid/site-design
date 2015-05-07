@@ -3,7 +3,7 @@
 # Copyright (c) 2013 Tom Preston-Werner
 # MIT licensed per the site's footer.
 
-# Modifications (c) 2012 Scott Zeid and released under the X11 license.
+# Modifications (c) 2012, 2015 Scott Zeid and released under the X11 license.
 
 module Jekyll
  class PostList < Page
@@ -16,9 +16,12 @@ module Jekyll
    self.process(@name)
    self.read_yaml(File.join(base, site.config["layouts"]), 'post-list.html')
 
-   self.data["title"]     = "#{type.capitalize}: #{name}"
-   self.data["menu-text"] = name
-   self.data[type]        = name
+   self.data["title"]        = "#{type.capitalize}: #{name}"
+   if not self.data.has_key?("nav")
+    self.data["nav"] = {}
+   end
+   self.data["nav"]["title"] = name
+   self.data[type]           = name
   end
  end
 
