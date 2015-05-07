@@ -38,8 +38,8 @@ layout: site
     {% capture a %}<a href="{%if p.nav.url%}{{p.nav.url|uri_escape}}{%else%}{%root%}{{p.nav.slug|uri_escape}}{%endif%}"{%if p.nav.target%} target="{{p.nav.target|xml_escape}}"{%endif%}>{% endcapture %}{% comment %}</a>{% endcomment %}
     <span>
      {{ a }}{% if p.icon %}<img src="{% root %}{% if p.nav.dir != "/" %}{{ p.nav.dir | uri_escape }}{% endif %}/{{ p.icon | uri_escape }}" alt="" class="left" />{% endif %}</a>
-    {% if p.subpage-text %}
-     <span>{{ a }}{{p.subpage-text}}</a></span>
+    {% if p.nav.subpage-title %}
+     <span>{{ a }}{{p.nav.subpage-title}}</a></span>
     {% elsif p.title != "Home" %}
      <span>{{ a }}{{p.nav.title}}</a></span>
     {% else %}
