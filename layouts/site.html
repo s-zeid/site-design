@@ -17,8 +17,8 @@ __sublayout__: site
    {{ li | replace: 'class=" ', 'class="' | replace: ' class=""', "" }}
    <a href="{%if p.nav.url%}{{p.nav.url|uri_escape}}{%else%}{%root%}{{p.nav.slug|uri_escape}}{%endif%}"{%if p.nav.tooltip%} title="{{p.nav.tooltip|xml_escape}}"{%elsif p.description%} title="{{p.description|xml_escape}}"{%endif%}{%if p.nav.target%} target="{{p.nav.target|xml_escape}}"{%endif%}>
      <span>{% if p.icon %}<img src="{% root %}{% if p.nav.dir != "/" %}{{ p.nav.dir | uri_escape}}{% endif %}/{{ p.icon | uri_escape }}" alt="" class="left" />{% endif %}</span>
-    {% if p.menu-text %}
-     <span>{{p.menu-text}}</span>
+    {% if p.nav.menu-title %}
+     <span>{{p.nav.menu-title}}</span>
     {% elsif p.title != "Home" %}
      <span>{{p.nav.title}}</span>
     {% else %}
