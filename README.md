@@ -54,23 +54,23 @@ Front-matter parameters
 
 There's a lot of these.
 
-### `title`
+### `page.title`
 (string)
 
 The page's title.
 
-### `icon`
+### `page.icon`
 (string)
 
 The URL, relative to the page itself, of an icon to use as the page's favicon
 and in navigation elements.
 
-### `description`
+### `page.description`
 (string)
 
 The page's description.
 
-### `og-image`
+### `page.og-image`
 (string)
 
 The URL, relative to the page itself, to use for the value of the Facebook
@@ -78,56 +78,56 @@ The URL, relative to the page itself, to use for the value of the Facebook
 value of `site.full-url` or `site.url`.  Protocol-relative URLs will then be
 converted based on the value of `site.default-scheme`.
 
-### `html-title`
+### `page.html-title`
 (string) (default: same as `page.title`)
 
 The title to use in the HTML `<title>` element.
 
-### `raw-html-title`
+### `page.raw-html-title`
 (boolean) (default: `False`)
 
 If `False`, HTML and newlines will be stripped from the title as used in the
 HTML `title` element.
 
-### `h1`
+### `page.h1`
 (string) (default: same as `page.title`)
 
 The title to show in the `<h1>` element at the top of the page.
 
-### `show-copyright`
+### `page.show-copyright`
 (boolean) (default: `True`)
 
 Controls whether any copyright statement is shown in the page's footer.
 
-### `head`
+### `page.head`
 (string)
 
 Extra content to be inserted at the end of the `<head>` tag, but before
 `page.stylus` and/or `page.css`.
 
-### `stylus`
+### `page.stylus`
 (string)
 
 A Stylus stylesheet to be inserted in a `<style>` tag at the end of the
 `<head>` tag, but before `page.css`.
 
-### `css`
+### `page.css`
 (string)
 
 A CSS stylesheet to be inserted in a `<style>` tag at the end of the `<head>`
 tag.
 
-### `before-html`
+### `page.before-html`
 (string)
 
 Raw text to be inserted before *any* generated HTML, even before the doctype.
 
-### `after-html`
+### `page.after-html`
 (string)
 
 Raw text to be inserted after *all* generated HTML.
 
-### `use-absolute-root`
+### `page.use-absolute-root`
 (boolean) (default: same as `site.use-absoulte-root` or `False`)
 
 Controls whether absolute paths should be used for the site root path and the
@@ -136,52 +136,52 @@ the page is being rendered as a standalone page.  When being included in
 another page (e.g. a blog post listing or feed), the other page's setting will
 be used instead.
 
-### `nav`
+### `page.nav`
 (dictionary)
 
 Controls how the page is displayed in navigation elements
 (the top navigation bar, subpage listings, etc.).
 
-#### `hide`
+#### `page.nav.hide`
 (boolean) (default: `False` (`True` if no layout))
 
 Causes the page to not be shown in navigation areas.
 
-#### `show`
+#### `page.nav.show`
 (boolean) (default: `True` (`False` if no layout))
 
 Causes the page to be shown in navigation areas.
 
-#### `sort-key`
+#### `page.nav.sort-key`
 (string) (default: same as `page.url`)
 
 Used for sorting navigation elements.
 
-#### `title`
+#### `page.nav.title`
 (string) (default: same as `page.title`)
 
 Overrides the title used in navigation elements.  Different kinds of
 navigation areas may also support other parameters that override this
 one.
 
-#### `menu-title`
+#### `page.nav.menu-title`
 (string) (defaults: `page.nav.title` or `page.title`)
 
 The title to use in menu-style navigation elements.  Prefer to use
 `page.nav.title` instead.
 
-#### `subpage-title`
+#### `page.nav.subpage-title`
 (string) (defaults: `page.nav.title` or `page.title`)
 
 The title to use in subpage listings.  Prefer to use
 `page.nav.title` instead.
 
-#### `tooltip`
+#### `page.nav.tooltip`
 (string) (default: same as `page.description`)
 
 Text to be shown when hovering over the menu item.
 
-#### `target`
+#### `page.nav.target`
 (string)
 
 The window target to be used in the navigation item's `<a>` element.
