@@ -50,8 +50,8 @@ layout: site
     {% endcapture %}
     {{ li | replace: 'class=" ', 'class="' | replace: ' class=""', "" }}
      <a href="{%if p.nav.url%}{{p.nav.url|uri_escape}}{%else%}{%root%}{{p.nav.slug|uri_escape}}{%endif%}"{%if p.nav.tooltip%} title="{{p.nav.tooltip|xml_escape}}"{%elsif p.description%} title="{{p.description|xml_escape}}"{%endif%}{%if p.nav.target%} target="{{p.nav.target|xml_escape}}"{%endif%}>
-     {% if p.menu-text %}
-      {{p.menu-text}}
+     {% if p.nav.subpage-title %}
+      {{p.nav.subpage-title}}
      {% elsif p.title != "Home" %}
       {{p.nav.title}}
      {% else %}
