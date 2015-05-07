@@ -54,23 +54,23 @@ Front-matter parameters
 
 There's a lot of these.
 
-### `page.title`
+## `page.title`
 (string)
 
 The page's title.
 
-### `page.icon`
+## `page.icon`
 (string)
 
 The URL, relative to the page itself, of an icon to use as the page's favicon
 and in navigation elements.
 
-### `page.description`
+## `page.description`
 (string)
 
 The page's description.
 
-### `page.og-image`
+## `page.og-image`
 (string)
 
 The URL, relative to the page itself, to use for the value of the Facebook
@@ -78,56 +78,56 @@ The URL, relative to the page itself, to use for the value of the Facebook
 value of `site.full-url` or `site.url`.  Protocol-relative URLs will then be
 converted based on the value of `site.default-scheme`.
 
-### `page.html-title`
+## `page.html-title`
 (string) (default: same as `page.title`)
 
 The title to use in the HTML `<title>` element.
 
-### `page.raw-html-title`
+## `page.raw-html-title`
 (boolean) (default: `False`)
 
 If `False`, HTML and newlines will be stripped from the title as used in the
 HTML `title` element.
 
-### `page.h1`
+## `page.h1`
 (string) (default: same as `page.title`)
 
 The title to show in the `<h1>` element at the top of the page.
 
-### `page.show-copyright`
+## `page.show-copyright`
 (boolean) (default: `True`)
 
 Controls whether any copyright statement is shown in the page's footer.
 
-### `page.head`
+## `page.head`
 (string)
 
 Extra content to be inserted at the end of the `<head>` tag, but before
 `page.stylus` and/or `page.css`.
 
-### `page.stylus`
+## `page.stylus`
 (string)
 
 A Stylus stylesheet to be inserted in a `<style>` tag at the end of the
 `<head>` tag, but before `page.css`.
 
-### `page.css`
+## `page.css`
 (string)
 
 A CSS stylesheet to be inserted in a `<style>` tag at the end of the `<head>`
 tag.
 
-### `page.before-html`
+## `page.before-html`
 (string)
 
 Raw text to be inserted before *any* generated HTML, even before the doctype.
 
-### `page.after-html`
+## `page.after-html`
 (string)
 
 Raw text to be inserted after *all* generated HTML.
 
-### `page.use-absolute-root`
+## `page.use-absolute-root`
 (boolean) (default: same as `site.use-absoulte-root` or `False`)
 
 Controls whether absolute paths should be used for the site root path and the
@@ -136,52 +136,52 @@ the page is being rendered as a standalone page.  When being included in
 another page (e.g. a blog post listing or feed), the other page's setting will
 be used instead.
 
-### `page.nav`
+## `page.nav`
 (dictionary)
 
 Controls how the page is displayed in navigation elements
 (the top navigation bar, subpage listings, etc.).
 
-#### `page.nav.hide`
+### `page.nav.hide`
 (boolean) (default: `False` (`True` if no layout))
 
 Causes the page to not be shown in navigation areas.
 
-#### `page.nav.show`
+### `page.nav.show`
 (boolean) (default: `True` (`False` if no layout))
 
 Causes the page to be shown in navigation areas.
 
-#### `page.nav.sort-key`
+### `page.nav.sort-key`
 (string) (default: same as `page.url`)
 
 Used for sorting navigation elements.
 
-#### `page.nav.title`
+### `page.nav.title`
 (string) (default: same as `page.title`)
 
 Overrides the title used in navigation elements.  Different kinds of
 navigation areas may also support other parameters that override this
 one.
 
-#### `page.nav.menu-title`
+### `page.nav.menu-title`
 (string) (defaults: `page.nav.title` or `page.title`)
 
 The title to use in menu-style navigation elements.  Prefer to use
 `page.nav.title` instead.
 
-#### `page.nav.subpage-title`
+### `page.nav.subpage-title`
 (string) (defaults: `page.nav.title` or `page.title`)
 
 The title to use in subpage listings.  Prefer to use
 `page.nav.title` instead.
 
-#### `page.nav.tooltip`
+### `page.nav.tooltip`
 (string) (default: same as `page.description`)
 
 Text to be shown when hovering over the menu item.
 
-#### `page.nav.target`
+### `page.nav.target`
 (string)
 
 The window target to be used in the navigation item's `<a>` element.
@@ -192,31 +192,31 @@ Tags
 
 This is only a partial list of Liquid tags available.
 
-### `root`
+## `root`
 
 Inserts the site's root URL.  This may be relative to the current page or
 absolute, depending on the value of `page.use-absolute-root` *on the page
 actually being generated* or `site.use-absolute-root`.
 
-### `dir`
+## `dir`
 
 Inserts the path to the current page's directory. This may be relative to the
 current page or absolute, depending on the value of `page.use-absolute-root`
 *on the page actually being generated* or `site.use-absolute-root`.
 
-### `enquiry`
+## `enquiry`
 
 Inserts a literal enquiry character (ASCII value `0x05`).  This exists due to
 how the `root` and `dir` tags are internally implemented.
 
-### `copyright_year`
+## `copyright_year`
 
 Inserts the copyright year(s) that apply to the site.  This is based on the
 current year at the time of rendering and the value of `site.copyright-start`.
 The output will be of the format `<start-year>&ndash;<end-year>`, or just
 `<end-year>` if both are the same.
 
-### `rootify`
+## `rootify`
 
 A block tag that resolves all references to the site's root URL using the
 settings that apply to the page or layout in which `rootify` is used.  All
@@ -224,7 +224,7 @@ uses of `root`, `dir`, or `enquiry` MUST be contained inside a `rootify`
 block, either directly or indirectly.  The included layouts (except for
 `none`) will take care of this for you.
 
-### `indent`
+## `indent`
 Usage: `{% indent <level> %}...{% endindent %}`
 
 A block tag that indents its contents by `level` space(s).  `level` may be
@@ -240,7 +240,7 @@ regular expression.
 Filters
 =======
 
-### `gsub`
+## `gsub`
 Usage: `{{ ... | gsub: <regex>, <replacement>[, <options>] }}`
 
 Converts input to a string and runs Ruby's [String#gsub][string-gsub] on the
