@@ -14,6 +14,16 @@ In particular, you will notice that your site tree will contain no
 `_template` directory, and the Makefile makes sure Jekyll uses the correct
 paths for them.
 
+When the site is built, the output will initially be placed in a `._build`
+directory, and once the process is finished, `_site` will be ***deleted***
+and `._build` will be moved into its place.  This is to ensure that the
+entire new version of the site goes live at once as opposed to each page
+separately.  However, any `.git`, `.gitmodules`, or `.gitignore` files or
+directories contained in `_site` will first be moved into `._build`; this
+way, you can still make `_site` be a separate Git repository (e.g. for
+hosting on GitHub Pages).  To preserve other files, use the `_postbuild`
+script.
+
 
 Contents
 ========

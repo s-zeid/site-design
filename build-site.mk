@@ -1,7 +1,9 @@
-.PHONY: css move postbuild
+.PHONY: css move postbuild %.PRECIOUS
 
 BUILD_DIR := ._build
 SITE_DIR  := _site
+
+PRECIOUS  := .git .gitmodules .gitignore
 
 all: build postbuild move
 
@@ -16,9 +18,12 @@ build: css
 postbuild:
 	if [ -x _postbuild ]; then ./_postbuild $(BUILD_DIR) $(SITE_DIR); fi
 
-move:
+move: $(PRECIOUS:=.PRECIOUS)
 	rm -rf $(SITE_DIR)
 	mv $(BUILD_DIR) $(SITE_DIR)
+
+%.PRECIOUS:
+	f=$(SITE_DIR)/$(@:.PRECIOUS=); [ -e $$f ] && mv $$f $(BUILD_DIR)/ || true
 
 css: _template/static/styles/*.css
 
