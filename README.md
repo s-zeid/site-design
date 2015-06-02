@@ -1,4 +1,4 @@
-This is the design for my Web site, <http://s.zeid.me/>.
+This is the design for my Web site, <https://s.zeid.me/>.
 
 The contents of this repository are not intended to be used directly as
 a Jekyll site; instead, a `new-site` script is provided that creates a
