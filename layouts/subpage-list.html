@@ -36,8 +36,18 @@ layout: site
    {% endcapture %}
    {{ li | replace: 'class=" ', 'class="' | replace: ' class=""', "" }}
     {% capture a %}<a href="{%if p.nav.url%}{{p.nav.url|uri_escape}}{%else%}{%root%}{{p.nav.slug|uri_escape}}{%endif%}"{%if p.nav.target%} target="{{p.nav.target|xml_escape}}"{%endif%}>{% endcapture %}{% comment %}</a>{% endcomment %}
+    {% capture icon_html %}
+     {% if p.icon %}
+      {% capture is_material %}{{ p.icon | gsub: "^material:[^.]+$", "" }}{% endcapture %}
+      {% if is_material == "" %}
+       <i class="material-icons">{{ p.icon | gsub: "^material:/*", "" | gsub: "[- ]", "_" }}</i>
+      {% else %}
+       <img src="{% root %}{% if p.nav.dir != "/" %}{{ p.nav.dir | uri_escape}}{% endif %}/{{ p.icon | uri_escape }}" alt="" class="left" />
+      {% endif %}
+     {% endif %}
+    {% endcapture %}
     <span>
-     {{ a }}{% if p.icon %}<img src="{% root %}{% if p.nav.dir != "/" %}{{ p.nav.dir | uri_escape }}{% endif %}/{{ p.icon | uri_escape }}" alt="" class="left" />{% endif %}</a>
+     {{ a }}{{ icon_html }}</a>
     {% if p.nav.subpage-title %}
      <span>{{ a }}{{p.nav.subpage-title}}</a></span>
     {% elsif p.title != "Home" %}

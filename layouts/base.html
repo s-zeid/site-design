@@ -23,7 +23,8 @@
   {% endif %}
   <meta name="generator" content="Jekyll" />
   <meta name="viewport" content="width=device-width; minimum-scale=1.0; initial-scale=1.0" />
-  {% if page.icon %}
+  {% capture icon_is_material %}{{ page.icon | gsub: "^material:[^.]+$", "" }}{% endcapture %}
+  {% if page.icon and icon_is_material != "" %}
   <link rel="shortcut icon" type="image/png" href="{{ page.icon }}" />
   {% else %}
   <link rel="shortcut icon" type="image/x-icon" href="{% root %}/favicon.ico" />

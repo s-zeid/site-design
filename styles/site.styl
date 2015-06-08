@@ -32,17 +32,39 @@ main
       font-weight: bold;
       img
        margin-right: 0.5em;
-       for type in min max
-        for dim in width height
-         {type}-{dim}: 16px;
-       @media (min-resolution: 160dpi),
-              handheld, (max-width: 480px), (max-device-width: 480px)
-        for type in min max
-         for dim in width height
-          {type}-{dim}: 22px;
      &:not(:last-child) > p
       > span
        padding-bottom: 0.5em;
+
+header > nav, main > article nav.subpage
+ ul > li
+  > a, > span
+   img
+    for type in min max
+     for dim in width height
+      {type}-{dim}: 16px;
+   .material-icons
+    position: relative; top: 0.185em; right: 0.05em;
+    font-size: 18px;
+    color: $text;
+    opacity: 0.8;
+   @media (min-resolution: 160dpi),
+          handheld, (max-width: 480px), (max-device-width: 480px)
+    img
+     for type in min max
+      for dim in width height
+       {type}-{dim}: 22px;
+    .material-icons
+     font-size: 24px;
+
+header > nav
+ ul > li
+  > a, > span
+   .material-icons
+    left: 0.325em;
+    margin-right: 0.1em;
+    color: inherit;
+    opacity: 0.85;
 
 body > main + hr
  if $sheet-metaphor

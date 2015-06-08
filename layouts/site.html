@@ -16,7 +16,17 @@ __sublayout__: site
    {% endcapture %}
    {{ li | replace: 'class=" ', 'class="' | replace: ' class=""', "" }}
    <a href="{%if p.nav.url%}{{p.nav.url|uri_escape}}{%else%}{%root%}{{p.nav.slug}}{%endif%}"{%if p.nav.tooltip%} title="{{p.nav.tooltip|xml_escape}}"{%elsif p.description%} title="{{p.description|xml_escape}}"{%endif%}{%if p.nav.target%} target="{{p.nav.target|xml_escape}}"{%endif%}>
-     <span>{% if p.icon %}<img src="{% root %}{% if p.nav.dir != "/" %}{{ p.nav.dir | uri_escape}}{% endif %}/{{ p.icon | uri_escape }}" alt="" class="left" />{% endif %}</span>
+    {% capture icon_html %}
+     {% if p.icon %}
+      {% capture is_material %}{{ p.icon | gsub: "^material:[^.]+$", "" }}{% endcapture %}
+      {% if is_material == "" %}
+       <i class="material-icons">{{ p.icon | gsub: "^material:/*", "" | gsub: "[- ]", "_" }}</i>
+      {% else %}
+       <img src="{% root %}{% if p.nav.dir != "/" %}{{ p.nav.dir | uri_escape}}{% endif %}/{{ p.icon | uri_escape }}" alt="" class="left" />
+      {% endif %}
+     {% endif %}
+    {% endcapture %}
+     <span>{{ icon_html }}</span>
     {% if p.nav.menu-title %}
      <span>{{p.nav.menu-title}}</span>
     {% elsif p.title != "Home" %}
