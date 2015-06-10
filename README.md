@@ -75,6 +75,19 @@ The page's title.
 The URL, relative to the page itself, of an icon to use as the page's favicon
 and in navigation elements.
 
+You may also use a Material Design icon without having to provide the image
+yourself.  To do so, use `material:<icon name>` as the value for the `icon`
+property.  Multiple words in a single icon name may be separated with
+underscores, hyphens, or spaces.  This uses [the Material Icons webfont
+](https://google.github.io/material-design-icons/#icon-font-for-the-web),
+which uses ligatures to allow one to just type out the name of the desired
+icon instead of having to hunt down an image or manually specify a codepoint.
+
+There is currently no support for using Material icons as the page's favicon
+with the webfont method; this currently only affects navigation elements.
+Favicon support may be implemented later by dynamically generating them in
+JavaScript using the Canvas element.
+
 ## `page.description`
 (string)
 
