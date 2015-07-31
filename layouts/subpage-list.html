@@ -47,7 +47,7 @@ layout: site
      {% endif %}
     {% endcapture %}
     <span>
-     {{ a }}{{ icon_html }}</a>
+     {{ a }}{% lrstrip %}{{ icon_html }}{% endlrstrip %}</a>
     {% if p.nav.subpage-title %}
      <span>{{ a }}{{p.nav.subpage-title}}</a></span>
     {% elsif p.title != "Home" %}
