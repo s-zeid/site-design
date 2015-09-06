@@ -57,6 +57,9 @@
   <script type="text/javascript" src="{% root %}/freecomment.js"></script>
   <script type="text/javascript" src="{% root %}/markdown.min.js"></script>
   {% endif %}
+  <script type="text/javascript">
+   var SITENAV_PAGE_INFO = {% sitenavpageinfo %};
+  </script>
   {% if site.ganalytics %}
   <script type="text/javascript">
    var _gaq = _gaq || [];

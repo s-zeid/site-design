@@ -54,6 +54,32 @@ module Jekyll
   end
  end
  
+ class SiteNavigationPageInfoTag < Liquid::Tag
+  include Liquid::StandardFilters
+  extend Jekyll::Filters
+  
+  def initialize(tag_name, url, tokens)
+   super
+   @url = url.strip
+  end
+  
+  def render(context)
+   url_map = SiteNavigationTag.url_map(context.registers[:site])
+   self.class.page_info((@url=="") ? context["page"]["url"] : @url, url_map,
+                        context)
+  end
+  
+  def self.page_info(url, url_map, ctx)
+   if url_map.include?(url)
+    p = url_map[url]
+    if not p["page_basic"].nil?
+     return jsonify(p["page_basic"].call(ctx))
+    end
+   end
+   return nil
+  end
+ end
+ 
  class SiteNavigationTag < Liquid::Block
   include Liquid::StandardFilters
   
@@ -100,6 +126,13 @@ module Jekyll
   def self.to_slug(url)
    slug = url.gsub(/\/index\.([^\/.]+)$/, "/")
    return (not slug.empty?) ? slug : "/"
+  end
+  
+  def self.url_map(site)
+   if @@tree.empty?
+    @@tree = self.make_tree(site)
+   end
+   return @@url_map
   end
   
   private
@@ -193,7 +226,18 @@ module Jekyll
      end
      p
     }.delete_if {|p| p.nil?}.length > 0
-    {"slug" => slug, "page" => page, "children" => children}
+    {
+     "slug" => slug, "page" => page, "children" => children,
+     "page_basic" => lambda {|ctx|
+      page_basic = Jekyll::Utils::deep_merge_hashes(page, {})
+      page_basic.delete("content")
+      pbnav = page_basic["nav"]
+      pbnav.delete("children")
+      page_basic = page_basic.merge({ "nav" => pbnav.merge(pbnav) { |k, v, unused|
+       (v.is_a? Proc) ? v.call(ctx, @@url_map[ctx["page"]["url"]]) : v
+      }})
+     }
+    }
    }.delete_if {|p| p.nil?}.sort {|a, b|
     self.sort_key(a) <=> self.sort_key(b)
    }.each {|p|
@@ -205,3 +249,4 @@ end
 
 Liquid::Template.register_tag("sitenav", Jekyll::SiteNavigationTag)
 Liquid::Template.register_tag("sitenavlevel", Jekyll::SiteNavigationLevelTag)
+Liquid::Template.register_tag("sitenavpageinfo", Jekyll::SiteNavigationPageInfoTag)
