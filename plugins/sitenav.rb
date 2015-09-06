@@ -71,12 +71,18 @@ module Jekyll
   
   def self.page_info(url, url_map, ctx)
    if url_map.include?(url)
+    info = nil
     p = url_map[url]
     if not p["page_basic"].nil?
-     return jsonify(p["page_basic"].call(ctx))
+     info = p["page_basic"].call(ctx)
     end
    end
-   return nil
+   info = Jekyll::Utils::deep_merge_hashes((info or {}), {
+    "nav" => {
+     "original" => {}
+    }
+   })
+   return jsonify(info)
   end
  end
  
