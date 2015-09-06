@@ -196,8 +196,8 @@ module Jekyll
       p = (p.nil?) ? {} : p
       cnav = (ctx["page"]["nav"].nil?) ? {} : ctx["page"]["nav"]
       (ctx["page"]["url"] == page["url"] or
-       ([page["url"], slug].include? cnav["highlight"]) and
-        cnav["highlight-as-current"])
+       (([page["url"], slug].include? cnav["highlight"]) and
+        cnav["highlight-as-current"]))
      },
      "parent"   => lambda{|ctx, p|
       p = (p.nil?) ? {} : p
