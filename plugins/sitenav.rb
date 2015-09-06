@@ -237,6 +237,7 @@ module Jekyll
      "page_basic" => lambda {|ctx|
       page_basic = Jekyll::Utils::deep_merge_hashes(page, {})
       page_basic.delete("content")
+      page_basic["nav"] = Jekyll::Utils::deep_merge_hashes(page_basic["nav"], {})
       pbnav = page_basic["nav"]
       pbnav.delete("children")
       page_basic = page_basic.merge({ "nav" => pbnav.merge(pbnav) { |k, v, unused|
