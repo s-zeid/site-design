@@ -59,6 +59,7 @@ module Jekyll
   
   @@tree = []
   @@child_list = {}
+  @@url_map = {}
   
   def initialize(tag_name, parent, tokens)
    super
@@ -113,7 +114,7 @@ module Jekyll
      if k == "children"
       generate_output(v, context, template, level + 1)
      else
-      (v.is_a? Proc) ? v.call(context) : v
+      (v.is_a? Proc) ? v.call(context, @@url_map[context["page"]["url"]]) : v
      end
     }})
    }.delete_if {|p| p.nil?}
@@ -158,13 +159,25 @@ module Jekyll
     end
     @@child_list[slug] = children = self.make_tree(site, slug_no_end_slash)
     page = Jekyll::Utils::deep_merge_hashes(page, {"nav" => {
-     "current"  => lambda {|ctx|
+     "current"  => lambda {|ctx, p|
+      p = (p.nil?) ? {} : p
       cnav = (ctx["page"]["nav"].nil?) ? {} : ctx["page"]["nav"]
       (ctx["page"]["url"] == page["url"] or
-       [page["url"], slug].include? cnav["highlight"])
+       ([page["url"], slug].include? cnav["highlight"]) and
+        cnav["highlight-as-current"])
      },
-     "parent"   => lambda{|ctx|
-      ctx["page"]["url"].start_with?(slug_no_end_slash+"/")
+     "parent"   => lambda{|ctx, p|
+      p = (p.nil?) ? {} : p
+      if p["page"] and p["page"]["nav"] and p["page"]["nav"]["original"] then
+       p_original_nav = p["page"]["nav"]["original"]
+      end
+      if p_original_nav and p_original_nav["highlight"]
+       nav_highlight = p_original_nav["highlight"]
+       nav_highlight_no_end_slash = nav_highlight.gsub(/(\/)$/, "")
+       (nav_highlight_no_end_slash+"/").start_with?(slug_no_end_slash+"/")
+      else
+       ctx["page"]["url"].start_with?(slug_no_end_slash+"/")
+      end
      },
      "slug"     => slug,
      "title"    => title,
@@ -183,6 +196,8 @@ module Jekyll
     {"slug" => slug, "page" => page, "children" => children}
    }.delete_if {|p| p.nil?}.sort {|a, b|
     self.sort_key(a) <=> self.sort_key(b)
+   }.each {|p|
+    @@url_map[p["page"]["url"]] = p
    }
   end
  end

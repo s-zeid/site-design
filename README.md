@@ -209,6 +209,18 @@ Text to be shown when hovering over the menu item.
 
 The window target to be used in the navigation item's `<a>` element.
 
+### `page.nav.highlight`
+(string)
+
+The URL of the page to highlight instead of the page itself in the navigation
+area.  This URL's parents will also be highlighted.
+
+### `page.nav.highlight-as-current`
+(boolean) (default: `False`)
+
+Whether the page referenced in `page.nav.highlight` will be treated as the
+"current" page.
+
 
 Tags
 ====
