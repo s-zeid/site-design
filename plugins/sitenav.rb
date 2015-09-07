@@ -82,7 +82,7 @@ module Jekyll
      "original" => {}
     }
    })
-   return jsonify(info)
+   return jsonify(info).gsub(/(^|[^\\])\//, "\\1\\/")
   end
  end
  
