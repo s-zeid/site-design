@@ -1,8 +1,7 @@
-layouts:             ./_template/layouts
-plugins:             ./_template/plugins
+layouts_dir:         ./_template/layouts
+plugins_dir:         ./_template/plugins
 
 permalink:           /blog/:year/:month/:day/:title/
-relative_permalinks: True
 highlighter:         pygments
 category-dir:        /blog/categories
 tag-dir:             /blog/tags

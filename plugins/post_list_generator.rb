@@ -14,7 +14,7 @@ module Jekyll
    @name = 'index.html'
 
    self.process(@name)
-   self.read_yaml(File.join(base, site.config["layouts"]), 'post-list.html')
+   self.read_yaml(File.join(base, site.config["layouts_dir"]), 'post-list.html')
 
    self.data["title"]        = "#{type.capitalize}: #{name}"
    if not self.data.has_key?("nav")
