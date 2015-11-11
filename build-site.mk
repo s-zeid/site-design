@@ -8,7 +8,8 @@ PRECIOUS  := .git .gitmodules .gitignore
 all: build postbuild move
 
 build: css
-	jekyll build --config _template/base-config.yml,_config.yml \
+	jekyll build --trace \
+	             --config _template/base-config.yml,_config.yml \
 	             --destination $(BUILD_DIR)
 	cp -ar _template/static/* $(BUILD_DIR)
 	cp -a _redirects $(BUILD_DIR)/_redirects
