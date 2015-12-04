@@ -47,7 +47,7 @@ Setup
     PHP 5 is an optional dependency, necessary only for the provided
     redirect mechanism (`_static/redirect.php`).
     
-2.  Download <https://bitbucket.org/scottywz/site-design/raw/master/new-site>
+2.  Download <https://code.s.zeid.me/site-design/raw/master/new-site>
     and make it executable.
 3.  Inspect `new-site`.
 4.  Run `new-site <directory>`, where `<directory>` is the directory in which
@@ -268,7 +268,7 @@ that can be converted to an integer.
 
 The contents of `<pre>...</pre>` sequences will not be modified except to
 replace newlines contained within them with the XML entity `&#x0a;`.
-[Unfortunately](http://stackoverflow.com/a/1732454), this is done with a
+[Unfortunately](https://stackoverflow.com/a/1732454), this is done with a
 regular expression.
 
 
