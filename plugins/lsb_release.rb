@@ -1,5 +1,5 @@
 # Copyright (C) 2012-2014 Scott Zeid
-# http://code.s.zeid.me/site-design
+# https://code.s.zeid.me/site-design
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
