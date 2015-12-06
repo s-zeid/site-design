@@ -10,7 +10,7 @@ fi
 if [ -n "$2" ]; then
  repo=$2
 else
- repo=https://bitbucket.org/scottywz/site-design.git
+ repo=https://gitlab.com/scottywz/site-design.git
 fi
 
 if [ ! -e "$dir" ]; then
