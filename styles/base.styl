@@ -202,15 +202,24 @@ main
 main article header:not(.freecomment-header)
  p, div, section
   font-size: smaller;
+  html.monospace-style &
+   font-size: 0.9em;
   color: $text-lighter;
 
 nav li time
  display: block;
  font-size: smaller;
+ html.monospace-style &
+  font-size: 0.9em;
  color: $text-lighter;
+
+html.monospace-style .freecomment-time
+ font-size: 0.9em;
 
 body > footer
  font-size: 0.8em;
+ html.monospace-style &
+  font-size: 0.9em;
  
  & > aside
   display: inline-block;
