@@ -7,12 +7,17 @@
  body, main
   max-width: 100%;
 
+if !$monospace
+ $font-size-mobile = 16pt;
+else
+ $font-size-mobile = 14pt;
+
 @media (min-resolution: 160dpi),
        handheld, (max-width: 480px), (max-device-width: 480px)
  body
   width: $width-tablet + $width-header-plus;
   &, pre, code, kbd, samp, var, tt, input, select, textarea
-   font-size: 16pt;
+   font-size: $font-size-mobile;
   & > header nav ul li > a img, & > header > h1 img
    for type in min max
     for dim in width height
@@ -20,7 +25,7 @@
  main
   width: $width-tablet;
   > article
-   font-size: 14pt;
+   font-size: $font-size-mobile;
  footer
   padding-bottom: .0875em;
   #portal-minibar
@@ -28,7 +33,7 @@
 
 @media (min-resolution: 240dpi)
  main > article
-  font-size: 14pt;
+  font-size: $font-size-mobile;
 
 @media handheld, tv, (max-width: 639px), (max-device-width: 639px)
  body
@@ -57,7 +62,8 @@
  main
   display: block;
   background-image: none;
-  box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.2);
+  if $shadows
+   box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.2);
   > :first-child:before
    // undo the min-height hack used in the desktop <main> style (see screen.styl)
    height: 0;
@@ -78,14 +84,16 @@
    border-style: none;
    text-align: center;
    background: $background-darker;
-   box-shadow: 0 -6px 6px 0 rgba(0, 0, 0, .2);
+   if $shadows
+    box-shadow: 0 -6px 6px 0 rgba(0, 0, 0, .2);
    &, &:first-child
     display: block;
    &.contents-only
     display: none;
    &:first-child
     margin: -0.375em 0 0.375em 0;
-    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, .2);
+    if $shadows
+     box-shadow: 0 6px 6px 0 rgba(0, 0, 0, .2);
    > h2, > nav > h2, > section > h2
     margin-left: 0.5em;
     &:first-child

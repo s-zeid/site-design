@@ -6,6 +6,17 @@
 
 @require "base"
 
+if $monospace
+ html, body, input, select, textarea
+  font-family: "Latin Modern Mono", "Droid Sans Mono", "DejaVu Sans Mono",
+               "Consolas", "Courier New", "Courier", monospace;
+  font-size: 10pt;
+ pre, code, kbd, samp, var, tt
+  font-family: "Latin Modern Mono", "Droid Sans Mono", "DejaVu Sans Mono",
+               "Consolas", "Courier New", "Courier", monospace;
+  font-size: 10pt;
+  font-size-adjust: none;
+
 body
  background: $background
 
@@ -44,7 +55,11 @@ header > nav, main > article nav.subpage
      for dim in width height
       {type}-{dim}: 16px;
    .material-icons
-    position: relative; top: 0.185em; right: 0.05em;
+    position: relative; right: 0.05em;
+    if !$monospace
+     top: 0.164em;
+    else
+     top: 0.25em;
     font-size: 18px;
     color: $text;
     opacity: 0.8;

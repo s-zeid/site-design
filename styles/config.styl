@@ -1,7 +1,10 @@
 @require "../root/_config.styl"
 
-// Make sure that $sheet-metaphor is only predefined on new sites
+// Make sure that these are only predefined on new sites
 $sheet-metaphor               = "undefined"
+$monospace                    = "undefined"
+$shadows                      = "undefined"
+$menu-shadows                 = "undefined"
 
 $heading-sizes                = (1 2) (2 1.5) (3 1.25) (4 1) (5 0.8) (6 (2/3))
 
@@ -14,3 +17,9 @@ $width-header-plus-nosheet    = 0
 
 if $sheet-metaphor == "undefined"
  $sheet-metaphor = true
+if $monospace == "undefined"
+ $monospace = false
+if $shadows == "undefined"
+ $shadows = true
+if $menu-shadows == "undefined"
+ $menu-shadows = $shadows

@@ -37,10 +37,11 @@ body > header
  background: $header-background;
  color: $header-text;
  text-shadow: 1px 1px $header-text-shadow;
- box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+ if $shadows
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
  
  html.home &, html.level-0 &
-  height: 2.3em;
+  height: 2.3em - 0.025em;
  &, html.always-show-h1.home &, html.always-show-h1.level-0 &
   height: 4em;
  
@@ -53,7 +54,8 @@ body > header
  nav
   position: absolute; width: 100%;
   clip: rect(auto, auto, 35791394px, auto);
-  box-shadow: 0 -9px 6px -6px rgba(0, 0, 0, 0.8) inset;
+  unless $monospace
+   box-shadow: 0 -9px 6px -6px rgba(0, 0, 0, 0.8) inset;
   &, & > ul
    height: 2em;
    font-weight: normal;
@@ -77,12 +79,22 @@ body > header
      &:hover, &:focus
       text-decoration: none;
      img
-      margin: 0.5em 0 0 0.5em;
+      if !$monospace
+       margin: 0.5em 0 0 0.5em;
+      else
+       margin: 0.375em 0 0 0.5em;
       float: left;
       width: auto; height: auto;
       for type in min max
        for dim in width height
         {type}-{dim}: 16px;
+     i.material-icons
+      position: relative;
+      if !$monospace
+       top: 0.164em;
+      else
+       top: 0.25em;
+      margin-top: -0.1em;
      & > span
       display: table-cell;
       vertical-align: top;
@@ -90,12 +102,17 @@ body > header
      & > span + span
       display: block;
       padding: 0 0.5em 0 0;
-    html:not(.no-text-bug) &:not(.current):not(.home) > a span + span
-     /* WebKit (other than Chrome on Android) and Opera seem to want to put
-      * the text for non-bold navigation items one pixel lower than those
-      * that are bold--when using the Ubuntu font.  This fixes that. */
-     -webkit-transform: translateY(-1px);
-     -o-transform: translateY(-1px);
+    unless $monospace
+     html:not(.no-text-bug) &:not(.current):not(.home) > a span + span
+      /* WebKit (other than Chrome on Android) and Opera seem to want to put
+       * the text for non-bold navigation items one pixel lower than those
+       * that are bold--when using the Ubuntu font.  This fixes that. */
+      -webkit-transform: translateY(-1px);
+      -o-transform: translateY(-1px);
+     html:not(.no-text-bug) &:not(.current):not(.home) > a span + span
+      /* ... and Gecko puts non-bold text nav items 1 pixel HIGHER than bold
+       * ones when using the Ubuntu font.  [wat](https://youtu.be/m_F8wSZT3QY) */
+      -moz-transform: translateY(0px);
     &:hover > a, & > a:focus, &.current > a, &.parent > a
      position: relative;
      z-index: 3;
@@ -123,7 +140,8 @@ body > header
      top: auto; left: auto;
      z-index: -1;
      opacity: 1;
-     box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+     if $menu-shadows
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
      & li
       float: none;
       &:hover > ul
@@ -152,10 +170,11 @@ body > header
      text-shadow: 1px 1px $header-text-shadow;
      img
       margin-right: -0.25em;
-    &:hover, &.home:first-child > a:hover
-     box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
-    &.home:first-child
-     box-shadow: none;
+    if $menu-shadows
+     &:hover, &.home:first-child > a:hover
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+     &.home:first-child
+      box-shadow: none;
     &.has-children
      &, & > a
       z-index: 3;
@@ -173,7 +192,7 @@ body > header
   top: 2em;
   display: block;
   clear: both;
-  margin: 0;
+  margin: -0.013125em 0 0 0;  /* send halp pls (Blink or WebKit bug) */
   z-index: 1;
   line-height: 2em;
   font-size: 1em;
@@ -230,7 +249,8 @@ main
  margin: 0 auto;
  background: $background-main;
  if $sheet-metaphor
-  box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.2);
+  if $shadows
+   box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.2);
  else
   flex: 0 0 auto;
  color: $text;
@@ -267,7 +287,10 @@ main
   padding-right: 0.5em;
   border-bottom: 0.6em solid transparent; //$background;
   border-left: 0.625em solid transparent; //$background;
-  font-size: 0.8em;
+  if !$monospace
+   font-size: 0.8em;
+  else
+   font-size: 0.9em;
   &:first-child
    display: none;
   > h2, > nav > h2, > section > h2
