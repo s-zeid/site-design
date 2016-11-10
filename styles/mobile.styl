@@ -36,8 +36,9 @@ else
   font-size: $font-size-mobile;
 
 @media handheld, tv, (max-width: 639px), (max-device-width: 639px)
- body
-  background: $outer-background;
+ if $sheet-metaphor
+  body
+   background: $outer-background;
  
  body > header
   &, & > nav > ul, & > h1 > span
@@ -61,6 +62,7 @@ else
  
  main
   display: block;
+  background: $background-main;
   background-image: none;
   if $shadows
    box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.2);
