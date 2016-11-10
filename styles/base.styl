@@ -235,12 +235,23 @@ form
   label, select, textarea,
   input[type="text"], input[type="password"], input[type="file"]
    width: 25em;
+  input[type="text"], input[type="password"], input[type="file"]
+   -moz-transform: translateY(0px);  /* send halp pls (Gecko bug) */
+   /* you would think *not* translating it by +1px would be the *default*... */
+  input[type="text"], input[type="password"], input[type="file"], select
+   height: 1.45em;
+  select
+   position: relative; top: 2px;
+   html.monospace-style &
+    top: 0;
   textarea
    margin-top: 0.54em;
   textarea
    height: 12em;
   input[type="text"], input[type="password"], select, textarea
    font-size: 12pt;
+   html.monospace-style &
+    font-size: 10pt;
    border-width: 0 0 1px 0;
    border-style: none none solid none;
    border-color: $text-lighter * 2;
@@ -249,6 +260,7 @@ form
    padding-top: 0;
   label
    position: relative; top: -0.16em;
+   line-height: 1.65em;
   label:first-child, span:first-child
     position: static; top: 0;
     display: table-cell;
