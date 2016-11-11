@@ -122,6 +122,12 @@ The title to show in the `<h1>` element at the top of the page.
 
 Controls whether any copyright statement is shown in the page's footer.
 
+## `page.show-recent-posts`
+(boolean) (default: `False`)
+
+Controls whether the recent posts list is shown on pages other than the home
+and blog pages.
+
 ## `page.head`
 (string)
 

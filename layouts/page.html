@@ -65,7 +65,7 @@ layout: site
  </nav>
  {% endcapture %}
  {% unless root_listing %}{% if subpages_nav contains "</li>" or subpages_nav contains "Liquid error:" %}{{ subpages_nav }}{% endif %}{% endunless %}
- {% if page.title == "Home" %}
+ {% if page.title == "Home" or page.show-recent-posts %}
  <nav>
   <h2>Recent Posts</h2>
   <ul>
