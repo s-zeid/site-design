@@ -42,7 +42,8 @@ Setup
         fedora$ sudo dnf install ruby ruby-devel rubygems nodejs npm make
         ubuntu$ sudo apt-get install ruby ruby-dev rubygems nodejs npm make
         any-distro$ sudo npm -g install stylus
-        any-distro$ sudo gem install jekyll stylus pygments.rb
+        any-distro$ sudo gem install --no-format-executable jekyll
+        any-distro$ sudo gem install stylus pygments.rb
     
     PHP 5 is an optional dependency, necessary only for the provided
     redirect mechanism (`_static/redirect.php`).
