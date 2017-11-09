@@ -7,6 +7,16 @@
 
 /* basic.css rules */
 
+html:not(.monospace-style)
+ &, body, button, input, select, textarea
+  // lighter fonts for HiDPI are applied in helpers.styl:font-weight()
+  // (true gets passed to hidpi() so that it applies even when $monospace == true)
+  font-weight: normal true;
+  b, strong, th
+   font-weight: bold true;
+  +hidpi(true)
+   font-size: 11.6pt;
+
 body
  max-width: 720px;
  margin: 1em auto;

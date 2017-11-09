@@ -1,6 +1,26 @@
 roundn(num, precision)
  return (round(num * (10 ** precision)) / (10 ** precision));
 
+
+// HiDPI stuffs
+
+hidpi(cond=null)
+ if cond == null
+  cond = !$monospace
+ if cond
+  &
+   @media (min-resolution: 97dpi) //{}
+    {block}
+
+font-weight(value, cond=null)
+ font-weight: value;
+ +hidpi(cond)
+  if value == normal
+   font-weight: lighter;
+  else if value == bold
+   font-weight: bold;  //500;
+
+
 // Vendor prefix shit
 
 display(how)

@@ -75,6 +75,8 @@ body > header
      background: $header-dropdown-background;
      color: $header-dropdown-text;
      text-shadow: 1px 1px $header-dropdown-text-shadow;
+     +hidpi()
+      text-shadow: 0.75px 0.75px $header-dropdown-text-shadow;
      transition: all 0.4s ease-out;
      &:hover, &:focus
       text-decoration: none;
@@ -119,6 +121,8 @@ body > header
      background: $header-highlight;
      color: $header-highlight-text;
      text-shadow: 1px 1px $header-highlight-text-shadow;
+     +hidpi()
+      text-shadow: 0.75px 0.75px $header-highlight-text-shadow;
     & > a:hover, & > a:focus
      background: $header-highlight-darker;
     &.current > a, &.home > a
@@ -168,6 +172,8 @@ body > header
      background: transparent;
      color: $header-text;
      text-shadow: 1px 1px $header-text-shadow;
+     +hidpi()
+      text-shadow: 0.75px 0.75px $header-text-shadow;
      img
       margin-right: -0.25em;
     if $menu-shadows

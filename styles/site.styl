@@ -7,7 +7,7 @@
 @require "base"
 
 if $monospace
- html, body, input, select, textarea
+ html, body, button, input, select, textarea
   font-family: "Latin Modern Mono", "Droid Sans Mono", "DejaVu Sans Mono",
                "Consolas", "Courier New", "Courier", monospace;
   font-size: 10pt;
@@ -26,6 +26,14 @@ if $monospace
    top: 0;
   input[type="text"], input[type="password"], select, textarea
    font-size: 10pt;
+else
+ html, body, button, input, select, textarea
+  // lighter fonts for HiDPI are applied in helpers.styl:font-weight()
+  font-weight: normal;
+  b, strong, th
+   font-weight: bold;
+  +hidpi()
+   font-size: 11.6pt;
 
 body
  background: $background
