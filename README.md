@@ -48,7 +48,7 @@ Setup
     PHP 5 is an optional dependency, necessary only for the provided
     redirect mechanism (`_static/redirect.php`).
     
-2.  Download <https://code.s.zeid.me/site-design/raw/master/new-site>
+2.  Download <https://code.s.zeid.me/site-design/raw/main/new-site>
     and make it executable.
 3.  Inspect `new-site`.
 4.  Run `new-site <directory>`, where `<directory>` is the directory in which
