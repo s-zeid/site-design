@@ -22,7 +22,7 @@
   <meta name="description" content="{{ page.description | markdownify | strip_html | strip_newlines | xml_escape }}" />
   {% endif %}
   <meta name="generator" content="Jekyll" />
-  <meta name="viewport" content="width=device-width; minimum-scale=1.0; initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1" />
   {% capture icon_is_material %}{{ page.icon | gsub: "^material:[^.]+$", "" }}{% endcapture %}
   {% if page.icon and icon_is_material != "" %}
   <link rel="shortcut icon" type="image/png" href="{{ page.icon }}" />
