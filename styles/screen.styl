@@ -233,6 +233,7 @@ anchor-offset-top(offset)
   padding-top: offset;
  [id], [name]
   &:before
+   position: relative; z-index: -9999;
    display: block;
    content: "";
    height: offset;
@@ -241,6 +242,7 @@ anchor-offset-top(offset)
   h{h[0]}
    &[id], &[name], [id], [name]
     &:before
+     position: relative; z-index: -9999;
      display: block;
      content: "";
      height: roundn((1 / h[1]) * offset, 2);
