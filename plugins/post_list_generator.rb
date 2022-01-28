@@ -3,7 +3,7 @@
 # Copyright (c) 2013 Tom Preston-Werner
 # MIT licensed per the site's footer.
 
-# Modifications (c) 2012, 2015 Scott Zeid and released under the X11 license.
+# Modifications (c) 2012, 2015 S. Zeid and released under the X11 license.
 
 module Jekyll
  class PostList < Page

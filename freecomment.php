@@ -6,7 +6,7 @@
    app.php
    A minimal PHP Web framework.
    
-   Copyright (C) 2014-2015 Scott Zeid.
+   Copyright (C) 2014-2015 S. Zeid.
    
    Permission is hereby granted, free of charge, to any person obtaining a copy
    of this software and associated documentation files (the "Software"), to deal
@@ -219,7 +219,7 @@ class App {
 
 
 /* Super Mailer Bros. 3
- * Copyright (c) 2012-2015 Scott Zeid.  Released under the X11 License.
+ * Copyright (c) 2012-2015 S. Zeid.  Released under the X11 License.
  * 
  * This isn't my best code, but here it is anyway.  It uses
  * imap_mail_compose() to generate the MIME code for the attachments
@@ -409,7 +409,7 @@ function smb_mime($f) {
    freecomment.php
    A minimalist blog comment system with a JavaScript frontend.
    
-   Copyright (C) 2014-2015 Scott Zeid.
+   Copyright (C) 2014-2015 S. Zeid.
    https://code.s.zeid.me/freecomment
    
    Permission is hereby granted, free of charge, to any person obtaining a copy

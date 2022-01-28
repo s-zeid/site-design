@@ -4,7 +4,7 @@
 # Copyright (c) 2012 Aucor Oy
 # MIT License per <https://github.com/aucor/jekyll-plugins/blob/333794c/LICENCE>.
 
-# Modifications (c) 2015 Scott Zeid and released under the X11 license.
+# Modifications (c) 2015 S. Zeid and released under the X11 license.
 
 # Various whitespace-stripping block tags
 

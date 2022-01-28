@@ -4,7 +4,7 @@
    freecomment.js
    A minimalist blog comment system with a JavaScript frontend.
    
-   Copyright (C) 2014 Scott Zeid.
+   Copyright (C) 2014 S. Zeid.
    https://code.s.zeid.me/freecomment
    
    Permission is hereby granted, free of charge, to any person obtaining a copy
